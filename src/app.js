@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import './app.scss';
-import MyButton from './component/button/button';
+import Invision from './invision/invision';
 
-function App(){
-  return <h1>New React App - Task 2</h1>;
-  <MyButton />
+function App() {
+  return (
+    <Invision />
+  )
 }
 
 ReactDom.render(<App />, document.getElementById('root'));

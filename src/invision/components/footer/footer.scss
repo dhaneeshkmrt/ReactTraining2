@@ -1,0 +1,9 @@
+@import "../../styles/variables";
+footer {
+  background-color: #424242;
+  padding: 15px;
+  h2 {
+    text-align: center;
+    color: $primary-color;
+  }
+}

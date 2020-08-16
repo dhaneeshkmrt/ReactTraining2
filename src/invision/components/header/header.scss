@@ -1,0 +1,58 @@
+@import "../../styles/variables";
+.header {
+  background-color: #223322;
+  margin-bottom: 10px;
+  .top {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+    .logo {
+      font-size: 1.8rem;
+      color: $primary-color;
+      padding: 6px 0;
+    }
+    .add-movie {
+      button {
+        font-size: 1.5rem;
+        background-color: $button-bg;
+        color: $button-color;
+        border: none;
+        padding: 10px 15px;
+      }
+    }
+  }
+  .search-ctnr {
+    width: 75%;
+    margin: 0 auto;
+    .title{
+      color: #fff;
+      font-size: 1.7rem;
+    }
+    .search {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 10rem;
+      .input {
+        flex: 1 2 100%;
+        padding-right: 10px;
+        input {
+          width: 100%;
+          font-size: 1.5rem;
+          padding: 12px;
+        }
+      }
+      .search-btn {
+        flex-basis: 1 1 100%;
+        button {
+          font-size: 1.3rem;
+          background-color: $button-bg;
+          color: $button-color;
+          border: none;
+          padding: 15px 50px;
+        }
+      }
+    }
+  }
+}
