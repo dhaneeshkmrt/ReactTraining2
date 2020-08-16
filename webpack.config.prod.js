@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
-// const webpack = require('webpack');
-// const dotenv = require('dotenv');
 
 module.exports = {
   mode: 'production',
@@ -13,12 +12,12 @@ module.exports = {
   module: {
     rules: [
       { test: /\.(js)?$/, use: 'babel-loader' },
-      { test: /\.(css)?$/, use: ['style-loader', 'css-loader'] }
+      { test: /\.s[ac]ss$/i, use: ['style-loader', 'css-loader', 'sass-loader'] }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin({cleanAfterEveryBuildPatterns:['/dist']}),
   ],
   optimization: {
     splitChunks: {
