@@ -1,5 +1,5 @@
 import React from 'react';
-
+import thumbnail from './thumbnail.png';
 import './movie-list.scss';
 
 export default class MovieList extends React.Component {
@@ -34,7 +34,7 @@ export default class MovieList extends React.Component {
                   return (
                     <div className="item">
                       <div className="thumbnail">
-                        <img src={"./thumbnail.png"} alt="film-thumbnail" />
+                        <img src={thumbnail} alt="film-thumbnail" />
                       </div>
                       <div className="desc">
                         <div className="name">
