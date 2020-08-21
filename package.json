@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "cross-env NODE_ENV=\"development\" webpack-dev-server -p --open",
-    "serve:prod": "cross-env NODE_ENV=\"production\" webpack-dev-server -p --open",
-    "build": "cross-env NODE_ENV=\"development\" webpack",
-    "build:prod": "cross-env NODE_ENV=\"production\" webpack -p",
+    "serve": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "serve:prod": "cross-env NODE_ENV=production webpack-dev-server --open",
+    "build": "cross-env NODE_ENV=development webpack",
+    "build:prod": "cross-env NODE_ENV=production webpack",
     "test": "jest --verbose"
   },
   "keywords": [],
