@@ -8,6 +8,9 @@ module.exports = {
     path: __dirname + '/dist'
   },
   devtool: 'eval-source-map',
+  performance: {
+    maxAssetSize: 600000,
+  },
   module: {
     rules: [
       { test: /\.(js)?$/, use: 'babel-loader' },
