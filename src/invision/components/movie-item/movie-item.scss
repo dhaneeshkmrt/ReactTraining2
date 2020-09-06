@@ -1,0 +1,25 @@
+.movie-list-item {
+  position: relative;
+  .item-action {
+    .action-icon {
+      position: absolute;
+      right: 5px;
+      top: 25px;
+      background: #000;
+      width: 40px;
+      border-radius: 82px;
+      color: #fff;
+      padding: 15px 15px 10px 15px;
+      font-weight: bold;
+      word-spacing: 0;
+      box-sizing: border-box;
+      cursor: pointer;
+      padding: 10px 16px;
+    }
+    .action-list {
+      display: none;
+      position: absolute;
+      right: 0;
+    }
+  }
+}

@@ -1,16 +1,23 @@
 import React from 'react';
-
+import MoviePopup from "../add-movie/add-movie";
 import './header.scss';
 
 export default class Header extends React.Component {
+  constructor() {
+    super();
+    this.visible = false;
+  }
+  showAddMoviePopup() {
+    this.visible = true
+  }
 
   render() {
     return (
       <header className="header">
         <section className="top">
-          <div className="logo">Netflixroutlettee</div>
+          <div className="logo">Netflix routlettee</div>
           <div className="add-movie">
-            <button>+ ADD MOVIE</button>
+            <button onClick={this.showAddMoviePopup.bind(this)}>+ ADD MOVIE</button>
           </div>
         </section>
         <section className="search-ctnr">
@@ -24,6 +31,7 @@ export default class Header extends React.Component {
             </div>
           </div>
         </section>
+        <MoviePopup visible={this.visible} title="Add Movie"/>
       </header>
     );
   }

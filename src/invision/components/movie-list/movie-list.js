@@ -1,5 +1,6 @@
 import React from 'react';
 import thumbnail from './thumbnail.png';
+import MovieItem from '../movie-item/movie-item'
 import './movie-list.scss';
 
 export default class MovieList extends React.Component {
@@ -30,22 +31,8 @@ export default class MovieList extends React.Component {
           </div>
             <div className="items">
               {
-                array.map(() => {
-                  return (
-                    <div className="item">
-                      <div className="thumbnail">
-                        <img src={thumbnail} alt="film-thumbnail" />
-                      </div>
-                      <div className="desc">
-                        <div className="name">
-                          Pulp Fiction
-                            <div className="type">Action & adventure</div>
-                        </div>
-                        <div className="year">
-                          <span>2004</span></div>
-                      </div>
-                    </div>
-                  )
+                array.map((a, i) => {
+                  return <MovieItem key={i} name={'test'} year={1234} type='Action' thumbnail={thumbnail} />
                 })
               }
             </div>
