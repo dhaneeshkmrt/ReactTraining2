@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './movie-item.scss';
+import MoviePopup from '../add-movie/add-movie';
 
 export default class MovieItem extends React.Component {
   constructor(){
@@ -12,16 +13,22 @@ export default class MovieItem extends React.Component {
     this.hideMenu = () => {
       this.isMenuVisible = 'none';
     }
+    this.isEditMovieVisible = false;
+  }
+  editMovie(){
+    this.isEditMovieVisible= true;
   }
 
   render() {
     return (
       <div className="item movie-list-item">
+        <MoviePopup visible={this.isEditMovieVisible} title="Edit Movie"/>
         <div className="item-action">
           <div className="action-icon" onClick={this.showMenu}><span>&#8942;</span></div>
           <div className="action-list" style={{ display: this.isMenuVisible}}>
-            <div>Edit Movie</div>
-            <div>Delete Movie</div>
+            <div className="action-close-btn"><span>&times;</span></div>
+            <div className="action-list-item" onClick={this.editMovie()}>Edit Movie</div>
+            <div className="action-list-item">Delete Movie</div>
           </div>
         </div>
         <div className="thumbnail">
