@@ -1,14 +1,21 @@
 import React from 'react';
-import MoviePopup from "../add-movie/add-movie";
+import MoviePopup from "../movie-popup/movie.popup";
 import './header.scss';
 
 export default class Header extends React.Component {
   constructor() {
     super();
-    this.visible = false;
+    this.state = {
+      visible: false
+    }
+    this.onModalClose = this.onModalClose.bind(this);
   }
   showAddMoviePopup() {
-    this.visible = true
+    this.setState({ visible: true });
+  }
+
+  onModalClose(visible) {
+    this.setState({ visible })
   }
 
   render() {
@@ -31,7 +38,7 @@ export default class Header extends React.Component {
             </div>
           </div>
         </section>
-        <MoviePopup visible={this.visible} title="Add Movie"/>
+        <MoviePopup visible={this.state.visible} onModalClose={this.onModalClose} title="Add Movie" />
       </header>
     );
   }

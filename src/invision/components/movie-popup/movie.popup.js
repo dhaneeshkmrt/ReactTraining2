@@ -6,7 +6,7 @@ export default class MoviePopup extends React.Component {
     super(props)
     this.state = {
       title: this.props.movie?.title,
-      releaseDate: this.props.movie?.releaseDate,
+      releaseDate: new Date(this.props.movie?.releaseDate),
       url: this.props.movie?.url,
       genre: this.props.movie?.genre,
       overview: this.props.movie?.overview,
@@ -43,15 +43,11 @@ export default class MoviePopup extends React.Component {
     this.setState({ overview: event.target.value });
   }
 
-  closeModal(status) {
-    this.visible = status;
-  }
-
   render() {
     return (
-      <Modal visible={this.props.visible} width="600" height="auto" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+      <Modal visible={this.props.visible} width="600" effect="fadeInDown" onClickAway={() => this.props.onModalClose(false)}>
         <div className="add-movie-ctnr">
-          <div className="header-close-btn"><a onClick={() => this.closeModal(false)}>&times;</a></div>
+          <div className="header-close-btn"><a onClick={() => this.props.onModalClose(false)}>&times;</a></div>
           <h1>{this.props.title}</h1>
           <form className="form-ctnr">
             <div className="form-field">
@@ -60,23 +56,23 @@ export default class MoviePopup extends React.Component {
             </div>
             <div className="form-field">
               <label htmlFor="title">Release Date</label><br />
-              <input type="date" placeholder="Title" id="release-date" value={this.state.releaseDate} onChange={this.handleReleaseDateChange} />
+              <input type="date" placeholder="Release Date" id="release-date" value={this.state.releaseDate} onChange={this.handleReleaseDateChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">Movie URL</label><br />
-              <input type="text" placeholder="Title" id="url" value={this.state.url} onChange={this.handleUrlChange} />
+              <input type="text" placeholder="Movie URL" id="url" value={this.state.url} onChange={this.handleUrlChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">GENRE</label><br />
-              <input type="text" placeholder="Title" id="genre" value={this.state.genre} onChange={this.handleGenreChange} />
+              <input type="text" placeholder="GENRE" id="genre" value={this.state.genre} onChange={this.handleGenreChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">OVERVIEW</label><br />
-              <input type="text" placeholder="Title" id="overview" value={this.state.overview} onChange={this.handleOverviewChange} />
+              <input type="text" placeholder="OVERVIEW" id="overview" value={this.state.overview} onChange={this.handleOverviewChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">RUNTIME</label><br />
-              <input type="text" placeholder="Title" id="runtime" value={this.state.runtime} onChange={this.handleRuntimeChange} />
+              <input type="text" placeholder="RUNTIME" id="runtime" value={this.state.runtime} onChange={this.handleRuntimeChange} />
             </div>
 
             <div className="form-footer">
