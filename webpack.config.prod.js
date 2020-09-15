@@ -19,6 +19,9 @@ module.exports = {
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
     new CleanWebpackPlugin({cleanAfterEveryBuildPatterns:['/dist']}),
   ],
+  performance: {
+    maxAssetSize: 600000,
+  },
   optimization: {
     splitChunks: {
       chunks: 'all',
