@@ -5,12 +5,12 @@ export default class MoviePopup extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: this.props.movie?.title,
+      title: this.props.movie?.title || '',
       releaseDate: new Date(this.props.movie?.releaseDate),
-      url: this.props.movie?.url,
-      genre: this.props.movie?.genre,
-      overview: this.props.movie?.overview,
-      runtime: this.props.movie?.runtime
+      url: this.props.movie?.url || '',
+      genre: this.props.movie?.genre || '',
+      overview: this.props.movie?.overview || '',
+      runtime: this.props.movie?.runtime || ''
     }
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleReleaseDateChange = this.handleReleaseDateChange.bind(this);

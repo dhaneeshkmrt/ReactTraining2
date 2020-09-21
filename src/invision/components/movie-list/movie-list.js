@@ -15,8 +15,6 @@ export default class MovieList extends React.Component {
     this.getMovieList();
 
     this.sort = this.sort.bind(this);
-    // this.stringComparison = this.stringComparison.bind(this);
-    // this.numberComparison = this.numberComparison.bind(this);
   }
 
   getMovieList() {

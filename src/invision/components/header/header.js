@@ -15,7 +15,7 @@ export default class Header extends React.Component {
   }
 
   onModalClose(visible) {
-    this.setState({ visible })
+    this.setState({ visible });
   }
 
   render() {

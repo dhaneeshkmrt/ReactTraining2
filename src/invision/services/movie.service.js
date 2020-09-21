@@ -9,6 +9,7 @@ export default class MovieService {
         genre: 'Action1',
         movieUrl: 'http://imdb.com/1',
         overView: 'overView',
+        rating: 4.5,
         runTime: 90,
         releasedDate: '12-12-2002',
         thumbnail,
@@ -17,6 +18,7 @@ export default class MovieService {
         genre: 'Action2',
         movieUrl: 'http://imdb.com/1',
         overView: 'overView',
+        rating: 4.5,
         runTime: 90,
         releasedDate: '12-12-2002',
         thumbnail,
@@ -25,6 +27,7 @@ export default class MovieService {
         genre: 'Action3',
         movieUrl: 'http://imdb.com/1',
         overView: 'overView',
+        rating: 4.5,
         runTime: 90,
         releasedDate: '12-12-2002',
         thumbnail,
@@ -34,6 +37,7 @@ export default class MovieService {
         movieUrl: 'http://imdb.com/1',
         overView: 'overView',
         runTime: 90,
+        rating: 4.5,
         releasedDate: '12-12-2002',
         thumbnail,
       },{
@@ -42,6 +46,7 @@ export default class MovieService {
         movieUrl: 'http://imdb.com/1',
         overView: 'overView',
         runTime: 90,
+        rating: 4.5,
         releasedDate: '12-12-2002',
         thumbnail,
       },{
@@ -50,6 +55,7 @@ export default class MovieService {
         movieUrl: 'http://imdb.com/1',
         overView: 'overView',
         runTime: 90,
+        rating: 4.5,
         releasedDate: '12-12-2002',
         thumbnail,
       },{
@@ -58,6 +64,7 @@ export default class MovieService {
         movieUrl: 'http://imdb.com/1',
         overView: 'overView',
         runTime: 90,
+        rating: 4.5,
         releasedDate: '12-12-2002',
         thumbnail,
       },{
@@ -66,6 +73,7 @@ export default class MovieService {
         movieUrl: 'http://imdb.com/1',
         overView: 'overView',
         runTime: 90,
+        rating: 4.5,
         releasedDate: '12-12-2002',
         thumbnail,
       },{
@@ -74,6 +82,7 @@ export default class MovieService {
         movieUrl: 'http://imdb.com/1',
         overView: 'overView',
         runTime: 90,
+        rating: 4.5,
         releasedDate: '12-12-2002',
         thumbnail,
       },
