@@ -6,7 +6,7 @@ export default class MoviePopup extends React.Component {
     super(props)
     this.state = {
       title: this.props.movie?.title || '',
-      releaseDate: new Date(this.props.movie?.releaseDate),
+      releaseDate: this.props.movie?.releaseDate,
       url: this.props.movie?.url || '',
       genre: this.props.movie?.genre || '',
       overview: this.props.movie?.overview || '',
@@ -52,27 +52,27 @@ export default class MoviePopup extends React.Component {
           <form className="form-ctnr">
             <div className="form-field">
               <label htmlFor="title">Title</label><br />
-              <input type="text" placeholder="Title" id="title" value={this.state.title} onChange={this.handleTitleChange} />
+              <input type="text" placeholder="Title" value={this.state.title} onChange={this.handleTitleChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">Release Date</label><br />
-              <input type="date" placeholder="Release Date" id="release-date" value={this.state.releaseDate} onChange={this.handleReleaseDateChange} />
+              <input type="date" placeholder="Release Date" value={this.state.releaseDate} onChange={this.handleReleaseDateChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">Movie URL</label><br />
-              <input type="text" placeholder="Movie URL" id="url" value={this.state.url} onChange={this.handleUrlChange} />
+              <input type="text" placeholder="Movie URL" value={this.state.url} onChange={this.handleUrlChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">GENRE</label><br />
-              <input type="text" placeholder="GENRE" id="genre" value={this.state.genre} onChange={this.handleGenreChange} />
+              <input type="text" placeholder="GENRE" value={this.state.genre} onChange={this.handleGenreChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">OVERVIEW</label><br />
-              <input type="text" placeholder="OVERVIEW" id="overview" value={this.state.overview} onChange={this.handleOverviewChange} />
+              <input type="text" placeholder="OVERVIEW" value={this.state.overview} onChange={this.handleOverviewChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">RUNTIME</label><br />
-              <input type="text" placeholder="RUNTIME" id="runtime" value={this.state.runtime} onChange={this.handleRuntimeChange} />
+              <input type="text" placeholder="RUNTIME" value={this.state.runtime} onChange={this.handleRuntimeChange} />
             </div>
 
             <div className="form-footer">

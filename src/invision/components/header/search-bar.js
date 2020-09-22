@@ -2,7 +2,7 @@ import React from 'react';
 import MoviePopup from "../movie-popup/movie.popup";
 import './header.scss';
 
-export default class Header extends React.Component {
+export default class SearchBar extends React.Component {
   constructor() {
     super();
     this.state = {

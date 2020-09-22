@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Header from './components/header/header';
+import SearchBar from './components/header/search-bar';
 import MovieList from './components/movie-list/movie-list'
 import Footer from './components/footer/footer';
 import ErrorBoundary from './components/error-boundary/error-boundary';
@@ -18,7 +18,7 @@ export default class Invision extends React.Component {
 
     return (
       <ErrorBoundary>
-        <Header />
+        <SearchBar />
         <MovieList />
         <Footer />
       </ErrorBoundary>

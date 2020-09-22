@@ -6,7 +6,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <Modal visible={this.props.visible} width="600" effect="fadeInDown" onClickAway={() => this.props.onDeletePopupClose(false)}>
-        <div className="add-movie-ctnr">
+        <div className="delete-movie-ctnr">
           <div className="header-close-btn"><a onClick={() => this.props.onDeletePopupClose(false)}>&times;</a></div>
           <h1>{this.props.title}</h1>
           <div className="desc">

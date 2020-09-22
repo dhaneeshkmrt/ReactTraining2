@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './movie-item.scss';
-import MoviePopup from '../movie-popup/movie.popup';
-import DeletePopup from '../delete-movie/delete-popup';
 
 
 export default class MovieItem extends React.Component {
@@ -20,35 +18,19 @@ export default class MovieItem extends React.Component {
     this.hideMenu = () => {
       this.setState({ isMenuVisible: 'none' });
     }
-
-    this.onModalClose = this.onModalClose.bind(this);
-    this.onDeletePopupClose = this.onDeletePopupClose.bind(this);
   }
 
   editMovie() {
-    this.setState({ isEditMovieVisible: true });
+    this.props.showEditPopup(this.props.movie.id);
   }
 
-  onModalClose(visible) {
-    this.setState({ isEditMovieVisible: visible })
-  }
   deletePopup(){
-    this.setState({ isDeletePopup: true })
-  }
-
-  onDeletePopupClose(isDelete) {
-    if (isDelete) {
-      // delete move code
-    } else {
-      this.setState({ isDeletePopup: false });
-    }
+    this.props.showDeletePopup(this.props.movie.id);
   }
 
   render() {
     return (
       <div className="item movie-list-item">
-        <MoviePopup visible={this.state.isEditMovieVisible} title="Edit Movie" movie={this.props.movie} onModalClose={this.onModalClose} />
-        <DeletePopup visible={this.state.isDeletePopup} title="Delete Movie" onDeletePopupClose={this.onDeletePopupClose} />
         <div className="item-action">
           <div className="action-icon" onClick={() => this.showMenu()}><span>&#8942;</span></div>
           <div className="action-list" onClick={() => this.hideMenu()} style={{ display: this.state.isMenuVisible }}>
