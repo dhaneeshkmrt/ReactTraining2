@@ -6,7 +6,7 @@ export default class MoviePopup extends React.Component {
     super(props)
     this.state = {
       title: this.props.movie?.title || '',
-      releaseDate: this.props.movie?.releaseDate,
+      releaseDate: this.props.movie?.releaseDate || '',
       url: this.props.movie?.url || '',
       genre: this.props.movie?.genre || '',
       overview: this.props.movie?.overview || '',
