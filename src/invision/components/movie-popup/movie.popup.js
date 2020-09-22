@@ -4,20 +4,17 @@ import Modal from 'react-awesome-modal';
 export default class MoviePopup extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      title: this.props.movie?.title || '',
-      releaseDate: this.props.movie?.releaseDate || '',
-      url: this.props.movie?.url || '',
-      genre: this.props.movie?.genre || '',
-      overview: this.props.movie?.overview || '',
-      runtime: this.props.movie?.runtime || ''
-    }
+    this.state = { ...this.props.movie }
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleReleaseDateChange = this.handleReleaseDateChange.bind(this);
     this.handleUrlChange = this.handleUrlChange.bind(this);
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleOverviewChange = this.handleOverviewChange.bind(this);
     this.handleRuntimeChange = this.handleRuntimeChange.bind(this);
+  }
+
+  reset() {
+    this.setState({});
   }
 
   handleTitleChange(event) {
@@ -45,7 +42,7 @@ export default class MoviePopup extends React.Component {
 
   render() {
     return (
-      <Modal visible={this.props.visible} width="600" effect="fadeInDown" onClickAway={() => this.props.onModalClose(false)}>
+      <Modal visible={this.props.visible} width="600" effect="fadeInDown" onClickAway={() => this.props.onModalClose({ visible: false })}>
         <div className="add-movie-ctnr">
           <div className="header-close-btn"><a onClick={() => this.props.onModalClose(false)}>&times;</a></div>
           <h1>{this.props.title}</h1>
@@ -56,11 +53,11 @@ export default class MoviePopup extends React.Component {
             </div>
             <div className="form-field">
               <label htmlFor="title">Release Date</label><br />
-              <input type="date" placeholder="Release Date" value={this.state.releaseDate} onChange={this.handleReleaseDateChange} />
+              <input type="date" placeholder="Release Date" value={this.state.releasedDate} onChange={this.handleReleaseDateChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">Movie URL</label><br />
-              <input type="text" placeholder="Movie URL" value={this.state.url} onChange={this.handleUrlChange} />
+              <input type="text" placeholder="Movie URL" value={this.state.movieUrl} onChange={this.handleUrlChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">GENRE</label><br />
@@ -72,12 +69,12 @@ export default class MoviePopup extends React.Component {
             </div>
             <div className="form-field">
               <label htmlFor="title">RUNTIME</label><br />
-              <input type="text" placeholder="RUNTIME" value={this.state.runtime} onChange={this.handleRuntimeChange} />
+              <input type="text" placeholder="RUNTIME" value={this.state.runTime} onChange={this.handleRuntimeChange} />
             </div>
 
             <div className="form-footer">
-              <button className="primary-btn reset-button" type="reset">Reset</button>
-              <button className="primary-btn" type="submit">Submit</button>
+              <button className="primary-btn reset-button" onClick={(e) => { e.preventDefault(); this.reset() }}>Reset</button>
+              <button className="primary-btn" onClick={() => { this.props.onModalClose({ visible: false, updatedMovie: this.state }) }} >Submit</button>
             </div>
           </form>
         </div>

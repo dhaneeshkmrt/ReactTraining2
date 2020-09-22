@@ -51,7 +51,11 @@ export default function MovieList() {
 
   }
 
-  const onModalClose = (visible) => {
+  const onModalClose = ({ visible, updatedMovie }) => {
+    if (updatedMovie) {
+      const index = movieState.movieList.findIndex(movie => movie.id === updatedMovie.id);
+      movieState.movieList[index] = { ...updatedMovie };
+    }
     updateMovieState({ ...movieState, isEditMovieVisible: visible })
   }
 
@@ -67,23 +71,32 @@ export default function MovieList() {
     return movieState.movieList.find(movie => movie.id === id);
   })
 
-
-
   const showEditPopup = (id) => {
     const selectedMovie = findMovie(id);
-    updateMovieState({ ...movieState, isEditMovieVisible: true, selectedMovie })
+    updateMovieState({ ...movieState, selectedMovie, isEditMovieVisible: true })
   }
 
   const showDeletePopup = (id) => {
     const selectedMovie = findMovie(id);
-    updateMovieState({ ...movieState, isDeleteMovieVisible: true, selectedMovie })
+    updateMovieState({ ...movieState, selectedMovie, isDeleteMovieVisible: true })
   }
 
+  const showEditMoviePopup = () => {
+    if (movieState.isEditMovieVisible) {
+      return <MoviePopup visible="true" title="Edit Movie" movie={movieState.selectedMovie} onModalClose={onModalClose} />
+    }
+  }
+
+  const showDeleteMoviePopup = () => {
+    if (movieState.isDeleteMovieVisible) {
+      return <DeletePopup visible="true" title="Delete Movie" movie={movieState.selectedMovie} onDeletePopupClose={onDeletePopupClose} />
+    }
+  }
 
   return (
     <section className="movie-list-section">
-      <MoviePopup visible={movieState.isEditMovieVisible} title="Edit Movie" movie={movieState.selectedMovie} onModalClose={onModalClose} />
-      <DeletePopup visible={movieState.isDeleteMovieVisible} title="Delete Movie" movie={movieState.selectedMovie} onDeletePopupClose={onDeletePopupClose} />
+      { showEditMoviePopup()}
+      { showDeleteMoviePopup()}
       <div className="movie-list-ctnr">
         <div className="header">
           <div className="categories">
