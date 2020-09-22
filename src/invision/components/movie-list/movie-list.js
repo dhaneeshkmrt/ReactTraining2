@@ -1,10 +1,57 @@
 import React from 'react';
 import thumbnail from './thumbnail.png';
+import MovieItem from '../movie-item/movie-item'
 import './movie-list.scss';
+import MovieService from '../../services/movie.service';
 
 export default class MovieList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      movieList: [],
+      sortValue: 'RELEASE DATE',
+    };
+
+    this.getMovieList();
+
+    this.sort = this.sort.bind(this);
+  }
+
+  getMovieList() {
+    new MovieService().getMovieList().then(movieList => {
+      this.setState({ movieList });
+    });
+  }
+
+  sort(ev) {
+    this.setState({ sortValue: ev.target.value });
+    let sortType = 'genre';
+    let sortFn = this.stringComparison;
+    if (ev.target.value === 'RELEASE DATE') {
+      sortType = 'releasedDate';
+      sortFn = this.numberComparison;
+    }
+    const sortedMovieList = this.state.movieList.sort((movie1, movie2) => {
+      return sortFn(movie1[sortType], movie2[sortType]);
+    });
+
+    this.setState({ movieList: sortedMovieList });
+
+  }
+  stringComparison(b, a) {
+    return a.localeCompare(b);
+  }
+
+  numberComparison(b, a) {
+    if (a < b)
+      return -1;
+    if (a > b)
+      return 1;
+    return 0;
+  }
+
+
   render() {
-    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (
       <section className="movie-list-section">
         <div className="movie-list-ctnr">
@@ -18,34 +65,20 @@ export default class MovieList extends React.Component {
             </div>
             <div className="sort">
               SORT BY
-            <select>
-                <option>RELEASE DATE</option>
-                <option>Category</option>
+            <select onChange={this.sort} value={this.state.sortValue}>
+                <option value="RELEASE DATE">RELEASE DATE</option>
+                <option value="CATEGORY">CATEGORY</option>
               </select>
             </div>
           </div>
           <div className="movie-list">
             <div className="list-count">
-              39 movies Found
+              {this.state.movieList.length} movies Found
           </div>
             <div className="items">
               {
-                array.map(() => {
-                  return (
-                    <div className="item">
-                      <div className="thumbnail">
-                        <img src={thumbnail} alt="film-thumbnail" />
-                      </div>
-                      <div className="desc">
-                        <div className="name">
-                          Pulp Fiction
-                            <div className="type">Action & adventure</div>
-                        </div>
-                        <div className="year">
-                          <span>2004</span></div>
-                      </div>
-                    </div>
-                  )
+                this.state.movieList.map((movie, i) => {
+                  return <MovieItem key={i} movie={movie} />
                 })
               }
             </div>

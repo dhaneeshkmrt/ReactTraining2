@@ -1,3 +1,71 @@
-h1{
-  background-color: red;
+.add-movie-ctnr {
+  padding: 10px 50px 50px;
+  background-color: #232323;
+  .header-close-btn {
+    text-align: right;
+    color:#fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+  h1 {
+    font-weight: 100;
+    color: #fff;
+    transform: scaleY(1.2);
+    letter-spacing: 4px;
+    margin-top: 0;
+  }
+  .form-field {
+    label {
+      color: #f65261;
+      padding: 10px 0;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+    input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 1.2rem;
+      background-color: #424242;
+      color: #fff;
+      border: none;
+    }
+  }
+  .form-footer {
+    text-align: right;
+    margin-top: 25px;
+  }
+}
+
+.primary-btn {
+  font-size: 1.2rem;
+  background-color: #f65261;
+  color: #fff;
+  border: none;
+  display: inline-block;
+  padding: 10px 40px;
+}
+
+.reset-button {
+  margin-right: 15px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
