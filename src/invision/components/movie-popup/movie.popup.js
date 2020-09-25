@@ -12,7 +12,6 @@ export default function MoviePopup(props) {
     setState({
       ...props.movie,
       genre: undefined,
-      id: undefined,
       movieUrl: undefined,
       overview: undefined,
       rating: undefined,

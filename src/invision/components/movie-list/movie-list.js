@@ -119,29 +119,17 @@ export default function MovieList() {
     updateDeleteMoviePopupVisibility(true);
   }
 
-  const showEditMoviePopup = () => {
-    if (isEditMovieVisible) {
-      return <MoviePopup visible="true" title="Edit Movie" movie={selectedMovie} onModalClose={onMoviePopupClose} />
-    }
-  }
-
-  const showDeleteMoviePopup = () => {
-    if (isDeleteMovieVisible) {
-      return <DeletePopup visible="true" title="Delete Movie" movie={selectedMovie} onDeletePopupClose={onDeletePopupClose} />
-    }
-  }
-
   return (
     <>
       {
         detailedMovie ?
-        <MovieDetail movie={detailedMovie} showSearchBar={showSearchBar}></MovieDetail>
-        :
-        <SearchBar onModalClose={onMoviePopupClose} handleSearchClick={onHandleSearchClick} />
+          <MovieDetail movie={detailedMovie} showSearchBar={showSearchBar}></MovieDetail>
+          :
+          <SearchBar onModalClose={onMoviePopupClose} handleSearchClick={onHandleSearchClick} />
       }
       <section className="movie-list-section">
-        {showEditMoviePopup()}
-        {showDeleteMoviePopup()}
+        {isEditMovieVisible ? <MoviePopup visible="true" title="Edit Movie" movie={selectedMovie} onModalClose={onMoviePopupClose} /> : null}
+        {isDeleteMovieVisible ? <DeletePopup visible="true" title="Delete Movie" movie={selectedMovie} onDeletePopupClose={onDeletePopupClose} /> : null}
         <div className="movie-list-ctnr">
           <div className="header">
             <div className="categories">
