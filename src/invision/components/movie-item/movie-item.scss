@@ -1,5 +1,8 @@
 .movie-list-item {
   position: relative;
+  .desc{
+    cursor: pointer;
+  }
   .item-action {
     .action-icon {
       position: absolute;

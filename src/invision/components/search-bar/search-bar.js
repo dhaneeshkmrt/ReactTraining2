@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
 import MoviePopup from "../movie-popup/movie.popup";
-import './header.scss';
+import './search-bar.scss';
 
 export default function SearchBar(props) {
   const [addMoviePopupVisibility, updateAddMoviePopupVisibility] = useState(false);
+  const [searchKeyword, updateSearchKeyword] = useState('');
 
   const defaultMovie = {
     genre: undefined,
@@ -24,7 +25,7 @@ export default function SearchBar(props) {
 
   const onModalClose = (addMovieData) => {
     updateAddMoviePopupVisibility(addMovieData.visible);
-    if(addMovieData.isSubmit){
+    if (addMovieData.isSubmit) {
       props.onModalClose(addMovieData);
     }
   }
@@ -41,10 +42,10 @@ export default function SearchBar(props) {
         <h2 className="title">FIND YOUR MOVIE</h2>
         <div className="search">
           <div className="input">
-            <input type="search" />
+            <input type="search" value={searchKeyword} onChange={(ev) => { updateSearchKeyword(ev.target.value) }} />
           </div>
           <div className="search-btn">
-            <button>SEARCH</button>
+            <button onClick={() => props.handleSearchClick(searchKeyword)} >SEARCH</button>
           </div>
         </div>
       </section>

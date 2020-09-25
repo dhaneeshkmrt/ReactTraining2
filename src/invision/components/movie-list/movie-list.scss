@@ -1,5 +1,5 @@
 .movie-list-section {
-  background-color: #223322;
+  background-color: #232322;
   .movie-list-ctnr {
     width: 90%;
     margin: 0 auto;
@@ -11,6 +11,7 @@
         display: flex;
         justify-content: space-between;
         .category {
+          cursor: pointer;
           padding: 20px;
           color: #fff;
           border-bottom: 1px solid #2f2f2f;
@@ -32,7 +33,6 @@
     .movie-list {
       .list-count {
         font-size: 1.5rem;
-        background: #232;
         color: #fff;
         padding: 15px;
       }
@@ -47,6 +47,7 @@
           .thumbnail {
             width: 100%;
             height: auto;
+            min-height: 200px;
           }
           .desc {
             color: #9e9e9e;

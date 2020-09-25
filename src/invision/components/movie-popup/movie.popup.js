@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from 'react-awesome-modal';
 
 export default function MoviePopup(props) {
+  
 
   const isAdd = props.title === 'Add Movie';
 
@@ -16,18 +17,18 @@ export default function MoviePopup(props) {
   }
 
   const handleReleaseDateChange = (event) => {
-    setState({ ...movie, releaseDate: event.target.value });
+    setState({ ...movie, releasedDate: event.target.value });
   }
 
   const handleUrlChange = (event) => {
-    setState({ ...movie, url: event.target.value });
+    setState({ ...movie, movieUrl: event.target.value });
   }
   const handleGenreChange = (event) => {
     setState({ ...movie, genre: event.target.value });
   }
 
   const handleRuntimeChange = (event) => {
-    setState({ ...movie, runtime: event.target.value });
+    setState({ ...movie, runTime: event.target.value });
   }
 
   const handleOverviewChange = (event) => {
