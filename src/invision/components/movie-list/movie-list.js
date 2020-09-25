@@ -1,41 +1,42 @@
 import React, { useState, useCallback } from 'react';
-import thumbnail from './thumbnail.png';
-import MovieItem from '../movie-item/movie-item'
-import './movie-list.scss';
-import MovieService from '../../services/movie.service';
 
 import MoviePopup from '../movie-popup/movie.popup';
 import DeletePopup from '../delete-movie/delete-popup';
+
+import MovieItem from '../movie-item/movie-item'
+import SearchBar from '../search-bar/search-bar';
+import './movie-list.scss';
+
+import MovieService from '../../services/movie.service';
 import useFetchMovie from './fetch-movie.hook';
+
 
 export default function MovieList() {
 
-  const [movieState, updateMovieState] = useState({
-    movieList: [],
-    sortValue: 'RELEASE DATE',
-    isEditMovieVisible: false,
-    isDeleteMovieVisible: false,
-    selectedMovie: null
-  })
+  const [movieList, updateMovieList] = useState([]);
+  const [sortValue, updateSortValue] = useState('RELEASE DATE');
+  const [isEditMovieVisible, updateMoviePopupVisibility] = useState(false);
+  const [isDeleteMovieVisible, updateDeleteMoviePopupVisibility] = useState(false);
+  const [selectedMovie, updateSelectedMovie] = useState(null);
 
   useFetchMovie(() => {
-    new MovieService().getMovieList().then(movieList => {
-      updateMovieState({ ...movieState, movieList });
+    new MovieService().getMovieList().then(newMovieList => {
+      updateMovieList(newMovieList);
     });
   })
 
-  function sort(sortValue) {
+  function sort(newSortValue) {
+    updateSortValue(newSortValue);
     let sortType = 'genre';
     let sortFn = stringComparison;
-    if (sortValue === 'RELEASE DATE') {
+    if (newSortValue === 'RELEASE DATE') {
       sortType = 'releasedDate';
-      sortFn = numberComparison;
     }
-    const sortedMovieList = movieState.movieList.sort((movie1, movie2) => {
+    const sortedMovieList = movieList.sort((movie1, movie2) => {
       return sortFn(movie1[sortType], movie2[sortType]);
     });
 
-    updateMovieState({ ...movieState, movieList: sortedMovieList, sortValue });
+    updateMovieList(sortedMovieList);
 
     function stringComparison(b, a) {
       return a.localeCompare(b);
@@ -51,83 +52,100 @@ export default function MovieList() {
 
   }
 
-  const onModalClose = ({ visible, updatedMovie }) => {
-    if (updatedMovie) {
-      const index = movieState.movieList.findIndex(movie => movie.id === updatedMovie.id);
-      movieState.movieList[index] = { ...updatedMovie };
+  const onMoviePopupClose = ({ visible, isAdd, updatedMovie }) => {
+    updateMoviePopupVisibility(visible);
+
+    if (isAdd) {
+      
+      updateMovieList([...movieList, updatedMovie]);
+      return;
     }
-    updateMovieState({ ...movieState, isEditMovieVisible: visible })
+
+    if (updatedMovie) {
+      const index = movieList.findIndex(movie => movie.id === updatedMovie.id);
+      if (index !== -1) {
+        movieList[index] = { ...updatedMovie };
+      }
+    }
+
   }
 
-  const onDeletePopupClose = (isDelete) => {
+  const onDeletePopupClose = ({ isDelete, deletedMovie }) => {
     if (isDelete) {
-      // delete move code
-    } else {
-      updateMovieState({ ...movieState, isDeleteMovieVisible: false });
+      const index = movieList.findIndex(movie => movie.id === deletedMovie.id);
+      if (index !== -1) {
+        movieList.splice(index, 1);
+      }
     }
+    updateDeleteMoviePopupVisibility(false);
   }
 
   const findMovie = useCallback((id) => {
-    return movieState.movieList.find(movie => movie.id === id);
+    return movieList.find(movie => movie.id === id);
   })
 
   const showEditPopup = (id) => {
     const selectedMovie = findMovie(id);
-    updateMovieState({ ...movieState, selectedMovie, isEditMovieVisible: true })
+    updateSelectedMovie(selectedMovie);
+    updateMoviePopupVisibility(true);
   }
 
   const showDeletePopup = (id) => {
     const selectedMovie = findMovie(id);
-    updateMovieState({ ...movieState, selectedMovie, isDeleteMovieVisible: true })
+    updateSelectedMovie(selectedMovie);
+    updateDeleteMoviePopupVisibility(true);
   }
 
   const showEditMoviePopup = () => {
-    if (movieState.isEditMovieVisible) {
-      return <MoviePopup visible="true" title="Edit Movie" movie={movieState.selectedMovie} onModalClose={onModalClose} />
+    if (isEditMovieVisible) {
+      return <MoviePopup visible="true" title="Edit Movie" movie={selectedMovie} onModalClose={onMoviePopupClose} />
     }
   }
 
   const showDeleteMoviePopup = () => {
-    if (movieState.isDeleteMovieVisible) {
-      return <DeletePopup visible="true" title="Delete Movie" movie={movieState.selectedMovie} onDeletePopupClose={onDeletePopupClose} />
+    if (isDeleteMovieVisible) {
+      return <DeletePopup visible="true" title="Delete Movie" movie={selectedMovie} onDeletePopupClose={onDeletePopupClose} />
     }
   }
 
   return (
-    <section className="movie-list-section">
-      { showEditMoviePopup()}
-      { showDeleteMoviePopup()}
-      <div className="movie-list-ctnr">
-        <div className="header">
-          <div className="categories">
-            <div className="category">All</div>
-            <div className="category">DOCUMENTARY</div>
-            <div className="category">COMEDY</div>
-            <div className="category">HORROR</div>
-            <div className="category">CRIME</div>
+    <>
+      <SearchBar onModalClose={onMoviePopupClose} />
+      <section className="movie-list-section">
+        {showEditMoviePopup()}
+        {showDeleteMoviePopup()}
+        <div className="movie-list-ctnr">
+          <div className="header">
+            <div className="categories">
+              <div className="category">All</div>
+              <div className="category">DOCUMENTARY</div>
+              <div className="category">COMEDY</div>
+              <div className="category">HORROR</div>
+              <div className="category">CRIME</div>
+            </div>
+            <div className="sort">
+              SORT BY
+            <select onChange={(ev) => { sort(ev.target.value) }} value={sortValue}>
+                <option value="RELEASE DATE">RELEASE DATE</option>
+                <option value="CATEGORY">CATEGORY</option>
+              </select>
+            </div>
           </div>
-          <div className="sort">
-            SORT BY
-            <select onChange={(ev) => { sort(ev.target.value) }} value={movieState.sortValue}>
-              <option value="RELEASE DATE">RELEASE DATE</option>
-              <option value="CATEGORY">CATEGORY</option>
-            </select>
+          <div className="movie-list">
+            <div className="list-count">
+              {movieList.length} movies Found
+          </div>
+            <div className="items">
+              {
+                movieList.map((movie, i) => {
+                  return <MovieItem key={movie.id} movie={movie} showEditPopup={showEditPopup} showDeletePopup={showDeletePopup} />
+                })
+              }
+            </div>
           </div>
         </div>
-        <div className="movie-list">
-          <div className="list-count">
-            {movieState.movieList.length} movies Found
-          </div>
-          <div className="items">
-            {
-              movieState.movieList.map((movie, i) => {
-                return <MovieItem key={movie.id} movie={movie} showEditPopup={showEditPopup} showDeletePopup={showDeletePopup} />
-              })
-            }
-          </div>
-        </div>
-      </div>
-    </section >
+      </section >
+    </>
   );
 
 }
