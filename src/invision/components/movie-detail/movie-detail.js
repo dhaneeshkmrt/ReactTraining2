@@ -26,10 +26,10 @@ export default function MovieDetail(props) {
           <div className="type">{movie?.genre}</div>
           <div className="date-time">
             <span className="released-year">{new Date(movie?.releasedDate).getFullYear()}</span>
-            <span className="duration">{movie?.runTime}</span>
+            <span className="duration">{movie?.runTime} min</span>
           </div>
           <p className="description ">
-            {movie?.overView}
+            {movie?.overview}
           </p>
         </div>
       </div>

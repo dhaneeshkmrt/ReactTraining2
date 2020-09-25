@@ -2,14 +2,25 @@ import React, { useState } from "react";
 import Modal from 'react-awesome-modal';
 
 export default function MoviePopup(props) {
-  
+
 
   const isAdd = props.title === 'Add Movie';
 
   const [movie, setState] = useState({ ...props.movie });
 
   const reset = () => {
-    this.setState({});
+    setState({
+      ...props.movie,
+      genre: undefined,
+      id: undefined,
+      movieUrl: undefined,
+      overview: undefined,
+      rating: undefined,
+      releasedDate: undefined,
+      runTime: undefined,
+      thumbnail: undefined,
+      title: undefined
+    });
   }
 
   const handleTitleChange = (event) => {

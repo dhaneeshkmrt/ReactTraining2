@@ -9,7 +9,7 @@ export default class MovieService {
         title: 'THOR: THE DARK WORLD',
         genre: 'DOCUMENTARY',
         movieUrl: 'http://imdb.com/1',
-        overview: 'overview',
+        overview: 'We can combine the two by making the React state be the “single source of truth”. Then the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a “controlled component”.',
         rating: 4.5,
         runTime: 90,
         releasedDate: '2000-04-05',
