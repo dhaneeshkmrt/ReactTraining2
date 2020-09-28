@@ -1,0 +1,70 @@
+.movie-detail-ctnr {
+  background-color: #232323;
+  padding: 15px;
+  margin-bottom: 10px;
+  .item-action {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    color: #f65261;
+    .action-name {
+      font-size: 1.5rem;
+    }
+    .action-icon {
+      font-size: 1.5rem;
+      .svg-icon {
+        transform: scale(1.5);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .movie-detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    color: #fff;
+    .thumbnail {
+      width: 25%;
+      img {
+        max-width: 100%;
+      }
+    }
+    .desc {
+      width: 75%;
+      margin-left: 25px;
+      margin-top: 45px;
+    }
+    .name {
+      .title {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+      .rating {
+        font-size: 1.5rem;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        margin-left: 20px;
+        color: #9ccc65;
+        padding: 20px;
+      }
+    }
+
+    .type {
+      padding: 15px 0;
+    }
+    .date-time {
+      padding: 15px 0;
+      color: #f65261;
+      font-size: 1.5em;
+      .duration {
+        padding-left: 30px;
+      }
+    }
+    .description {
+      padding: 15px 0;
+      font-size: 1.2em;
+      line-height: 30px;
+    }
+  }
+}
