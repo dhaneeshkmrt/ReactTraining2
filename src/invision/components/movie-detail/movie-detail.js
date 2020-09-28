@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './movie-detail.scss';
 
 export default function MovieDetail(props) {
-  const [movie,] = useState({ ...props.movie })
+  const movie = props.movie;
 
   return (
     <div className="movie-detail-ctnr">

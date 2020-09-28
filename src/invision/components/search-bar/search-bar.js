@@ -7,18 +7,6 @@ export default function SearchBar(props) {
   const [addMoviePopupVisibility, updateAddMoviePopupVisibility] = useState(false);
   const [searchKeyword, updateSearchKeyword] = useState('');
 
-  const defaultMovie = {
-    genre: undefined,
-    id: undefined,
-    movieUrl: undefined,
-    overview: undefined,
-    rating: undefined,
-    releasedDate: undefined,
-    runTime: undefined,
-    thumbnail: undefined,
-    title: undefined
-  }
-
   const showAddMoviePopup = () => {
     updateAddMoviePopupVisibility(true);
   }
@@ -49,7 +37,7 @@ export default function SearchBar(props) {
           </div>
         </div>
       </section>
-      <MoviePopup visible={addMoviePopupVisibility} onModalClose={onModalClose} movie={defaultMovie} title="Add Movie" />
+      <MoviePopup visible={addMoviePopupVisibility} onModalClose={onModalClose} title="Add Movie" />
     </header>
   );
 }

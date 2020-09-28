@@ -34,37 +34,24 @@ export default function MovieList() {
     updateMovieList(searchedMovies);
   }
 
-  const filterCategory = useCallback((categoryName = '') => {
+  const filterCategory = (categoryName = '') => {
     const searchedMovies = fullMovieList.filter(movie => movie.genre.toLowerCase().includes(categoryName.toLowerCase()));
     updateMovieList(searchedMovies);
-  }, [fullMovieList]);
+  }
 
 
   const sort = (newSortValue) => {
     updateSortValue(newSortValue);
-    let sortType = 'genre';
     let sortFn = stringComparison;
-    if (newSortValue === 'RELEASE DATE') {
-      sortType = 'releasedDate';
-    }
     const sortedMovieList = movieList.sort((movie1, movie2) => {
-      return sortFn(movie1[sortType], movie2[sortType]);
+      return sortFn(movie1[newSortValue], movie2[newSortValue]);
     });
 
     updateMovieList(sortedMovieList);
 
     function stringComparison(b, a) {
-      return a.localeCompare(b);
+      return b.localeCompare(a);
     }
-
-    function numberComparison(b, a) {
-      if (a < b)
-        return -1;
-      if (a > b)
-        return 1;
-      return 0;
-    }
-
   }
 
   const showMovieDetail = (movie) => {
@@ -95,17 +82,21 @@ export default function MovieList() {
 
   const onDeletePopupClose = ({ isDelete, deletedMovie }) => {
     if (isDelete) {
-      const index = movieList.findIndex(movie => movie.id === deletedMovie.id);
-      if (index !== -1) {
-        movieList.splice(index, 1);
+      deleteFromList(movieList);
+      deleteFromList(fullMovieList);
+      function deleteFromList(list) {
+        const index = list.findIndex(movie => movie.id === deletedMovie.id);
+        if (index !== -1) {
+          fullMovieList.splice(index, 1);
+        }
       }
     }
     updateDeleteMoviePopupVisibility(false);
   }
 
-  const findMovie = useCallback((id) => {
+  const findMovie = (id) => {
     return movieList.find(movie => movie.id === id);
-  })
+  };
 
   const showEditPopup = (id) => {
     const selectedMovie = findMovie(id);
@@ -142,8 +133,8 @@ export default function MovieList() {
             <div className="sort">
               SORT BY
             <select onChange={(ev) => { sort(ev.target.value) }} value={sortValue}>
-                <option value="RELEASE DATE">RELEASE DATE</option>
-                <option value="CATEGORY">CATEGORY</option>
+                <option value="releasedDate">RELEASED DATE</option>
+                <option value="genre">GENRE</option>
               </select>
             </div>
           </div>

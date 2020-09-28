@@ -48,5 +48,14 @@ export default function MovieItem(props) {
 }
 
 MovieItem.propTypes = {
-  movie: PropTypes.object.isRequired
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string,
+    movieUrl: PropTypes.string,
+    overview: PropTypes.string,
+    rating: PropTypes.number,
+    releasedDate: PropTypes.string,
+    runTime: PropTypes.number,
+    thumbnail: PropTypes.string,
+  })
 }

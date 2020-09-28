@@ -11,14 +11,6 @@ export default function MoviePopup(props) {
   const reset = () => {
     setState({
       ...props.movie,
-      genre: undefined,
-      movieUrl: undefined,
-      overview: undefined,
-      rating: undefined,
-      releasedDate: undefined,
-      runTime: undefined,
-      thumbnail: undefined,
-      title: undefined
     });
   }
 
@@ -85,4 +77,17 @@ export default function MoviePopup(props) {
     </Modal>
   )
 
+}
+
+MoviePopup.defaultProps = {
+  movie: {
+    genre: '',
+    movieUrl: '',
+    overview: '',
+    rating: '',
+    releasedDate: '',
+    runTime: '',
+    thumbnail: '',
+    title: ''
+  }
 }
