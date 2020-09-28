@@ -1,9 +1,10 @@
-.add-movie-ctnr {
+.add-movie-ctnr,
+.delete-movie-ctnr {
   padding: 10px 50px 50px;
   background-color: #232323;
   .header-close-btn {
     text-align: right;
-    color:#fff;
+    color: #fff;
     font-size: 2.5rem;
     cursor: pointer;
   }
@@ -34,6 +35,10 @@
   .form-footer {
     text-align: right;
     margin-top: 25px;
+  }
+
+  .desc {
+    color: #fff;
   }
 }
 

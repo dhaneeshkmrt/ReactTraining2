@@ -1,5 +1,8 @@
 .movie-list-item {
   position: relative;
+  .desc{
+    cursor: pointer;
+  }
   .item-action {
     .action-icon {
       position: absolute;
@@ -16,6 +19,9 @@
       cursor: pointer;
       padding: 10px 16px;
     }
+    // .action-icon:hover + .action-list{
+    //   display: block;
+    // }
     .action-list {
       display: none;
       padding: 10px 0;

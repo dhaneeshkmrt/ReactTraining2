@@ -12,6 +12,10 @@
     }
     .action-icon {
       font-size: 1.5rem;
+      .svg-icon {
+        transform: scale(1.5);
+        cursor: pointer;
+      }
     }
   }
 
@@ -29,6 +33,7 @@
     .desc {
       width: 75%;
       margin-left: 25px;
+      margin-top: 45px;
     }
     .name {
       .title {
@@ -37,25 +42,29 @@
       }
       .rating {
         font-size: 1.5rem;
-        border: 1px solid;
-        padding: 5px;
+        border: 1px solid #fff;
         border-radius: 50%;
         margin-left: 20px;
+        color: #9ccc65;
+        padding: 20px;
       }
     }
 
     .type {
       padding: 15px 0;
     }
-    .date-time{
-      padding: 15px 0; 
+    .date-time {
+      padding: 15px 0;
       color: #f65261;
-      .duration{
+      font-size: 1.5em;
+      .duration {
         padding-left: 30px;
       }
     }
-    .description{
+    .description {
       padding: 15px 0;
+      font-size: 1.2em;
+      line-height: 30px;
     }
   }
 }
