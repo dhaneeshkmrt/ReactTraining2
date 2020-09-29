@@ -23,7 +23,7 @@ export default function MoviePopup(props) {
   }
 
   const handleUrlChange = (event) => {
-    setState({ ...movie, movieUrl: event.target.value });
+    setState({ ...movie, thumbnail: event.target.value });
   }
   const handleGenreChange = (event) => {
     setState({ ...movie, genre: event.target.value });
@@ -35,6 +35,9 @@ export default function MoviePopup(props) {
 
   const handleOverviewChange = (event) => {
     setState({ ...movie, overview: event.target.value });
+  }
+  const handleRatingChange = (event) => {
+    setState({ ...movie, rating: event.target.value });
   }
 
   return (
@@ -52,7 +55,7 @@ export default function MoviePopup(props) {
             </div>
             <div className="form-field">
               <label htmlFor="title">Movie URL</label><br />
-              <input type="text" placeholder="Movie URL" value={movie.movieUrl} onChange={handleUrlChange} />
+              <input type="text" placeholder="Movie URL" value={movie.thumbnail} onChange={handleUrlChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">GENRE</label><br />
@@ -61,6 +64,10 @@ export default function MoviePopup(props) {
             <div className="form-field">
               <label htmlFor="title">OVERVIEW</label><br />
               <input type="text" placeholder="OVERVIEW" value={movie.overview} onChange={handleOverviewChange} />
+            </div>
+            <div className="form-field">
+              <label htmlFor="title">Rating</label><br />
+              <input type="text" placeholder="OVERVIEW" value={movie.rating} onChange={handleRatingChange} />
             </div>
             <div className="form-field">
               <label htmlFor="title">RUNTIME</label><br />

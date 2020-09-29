@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo } from 'react';
+import { connect, useSelector } from 'react-redux'
 
 import MoviePopup from '../movie-popup/movie.popup';
 import DeletePopup from '../delete-movie/delete-popup';
@@ -11,23 +12,34 @@ import './movie-list.scss';
 import MovieService from '../../services/movie.service';
 import useFetchMovie from './fetch-movie.hook';
 
+import { getFullMovieList } from "../../store/actions/get-full-movie-list.action";
+import { addMovieAction } from "../../store/actions/add-movie.action";
 
-export default function MovieList() {
+function MovieList(props) {
+  const fullMovieList = useSelector((state) => {
+    return state.movie.fullMovieList;
+  });
 
-  const [movieList, updateMovieList] = useState([]);
-  const [fullMovieList, updateFullMovieList] = useState([]);
+  const movieList = useSelector((state) => {
+    return state.movie.movieList;
+  });
+
+  useFetchMovie(() => {
+    props.dispatch(getFullMovieList());
+  });
+
+
+  // const [movieList, updateMovieList] = useState([]);
+  const [, updateFullMovieList] = useState([]);
   const [sortValue, updateSortValue] = useState('RELEASE DATE');
   const [isEditMovieVisible, updateMoviePopupVisibility] = useState(false);
   const [isDeleteMovieVisible, updateDeleteMoviePopupVisibility] = useState(false);
   const [selectedMovie, updateSelectedMovie] = useState(null);
   const [detailedMovie, updateDetailedMovie] = useState(null);
 
-  useFetchMovie(() => {
-    new MovieService().getMovieList().then(newMovieList => {
-      updateMovieList(newMovieList);
-      updateFullMovieList(newMovieList);
-    });
-  });
+
+
+ 
 
   const onHandleSearchClick = (searchKeyword) => {
     const searchedMovies = fullMovieList.filter(movie => movie.title.toLowerCase().includes(searchKeyword.toLowerCase()));
@@ -66,8 +78,7 @@ export default function MovieList() {
     updateMoviePopupVisibility(visible);
 
     if (isAdd) {
-      updatedMovie.id = Math.max(...fullMovieList.map(movie => movie.id)) + 1 || 1;
-      updateMovieList([...movieList, updatedMovie]);
+      props.dispatch(addMovieAction(updatedMovie));
       return;
     }
 
@@ -156,3 +167,12 @@ export default function MovieList() {
   );
 
 }
+
+function mapToProps(store) {
+  const { fullMovieList } = store.movie;
+  return {
+    fullMovieList
+  }
+}
+
+export default connect(mapToProps)(MovieList);

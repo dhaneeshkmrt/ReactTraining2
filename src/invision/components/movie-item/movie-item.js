@@ -51,7 +51,6 @@ MovieItem.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string,
-    movieUrl: PropTypes.string,
     overview: PropTypes.string,
     rating: PropTypes.number,
     releasedDate: PropTypes.string,
