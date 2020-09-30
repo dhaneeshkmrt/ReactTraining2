@@ -16,18 +16,39 @@ import { getFullMovieList } from "../../store/actions/get-full-movie-list.action
 import { addMovieAction } from "../../store/actions/add-movie.action";
 
 function MovieList(props) {
-  const fullMovieList = useSelector((state) => {
-    return state.movie.fullMovieList;
-  });
-
-  const movieList = useSelector((state) => {
-    return state.movie.movieList;
-  });
+  const [movieList, updateMovieList] = useState([]);
 
   useFetchMovie(() => {
     props.dispatch(getFullMovieList());
   });
 
+  const fullMovieList = useSelector(state => {
+    return state.movie.fullMovieList
+  });
+  const filterCategoryName = useSelector(state => state.movie.filterCategoryName);
+  const filterBySearchKeyword = useSelector(state => state.movie.searchKeyword);
+
+  // updateMovieList(fullMovieList);
+
+  if (filterCategoryName) {
+    const filteredMovies = fullMovieList.filter(movie => movie.genre.toLowerCase().includes(filterCategoryName.toLowerCase()));
+    updateMovieList(filteredMovies);
+  }
+
+  if (filterBySearchKeyword) {
+    const searchedMovies = fullMovieList.filter(movie => movie.title.toLowerCase().includes(filterBySearchKeyword.toLowerCase()));
+    updateMovieList(searchedMovies);
+  }
+
+  const onHandleSearchClick = (searchKeyword) => {
+    const searchedMovies = fullMovieList.filter(movie => movie.title.toLowerCase().includes(searchKeyword.toLowerCase()));
+    updateMovieList(searchedMovies);
+  }
+
+  const filterCategory = (categoryName = '') => {
+    const filteredMovies = fullMovieList.filter(movie => movie.genre.toLowerCase().includes(categoryName.toLowerCase()));
+    updateMovieList(filteredMovies);
+  }
 
   // const [movieList, updateMovieList] = useState([]);
   const [, updateFullMovieList] = useState([]);
@@ -39,17 +60,9 @@ function MovieList(props) {
 
 
 
- 
 
-  const onHandleSearchClick = (searchKeyword) => {
-    const searchedMovies = fullMovieList.filter(movie => movie.title.toLowerCase().includes(searchKeyword.toLowerCase()));
-    updateMovieList(searchedMovies);
-  }
 
-  const filterCategory = (categoryName = '') => {
-    const searchedMovies = fullMovieList.filter(movie => movie.genre.toLowerCase().includes(categoryName.toLowerCase()));
-    updateMovieList(searchedMovies);
-  }
+
 
 
   const sort = (newSortValue) => {
@@ -72,7 +85,6 @@ function MovieList(props) {
   const showSearchBar = () => {
     updateDetailedMovie(null);
   }
-
 
   const onMoviePopupClose = ({ visible, isAdd, updatedMovie }) => {
     updateMoviePopupVisibility(visible);
