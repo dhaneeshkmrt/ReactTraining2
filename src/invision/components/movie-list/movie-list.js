@@ -133,7 +133,7 @@ function MovieList(props) {
               SORT BY
             <select onChange={(ev) => { sort(ev.target.value) }} value={sortValue}>
                 <option value="releasedDate">RELEASED DATE</option>
-                <option value="genre">GENRE</option>
+                <option value="rating">rating</option>
               </select>
             </div>
           </div>
