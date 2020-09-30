@@ -7,6 +7,6 @@ export const movieConverter= (movie)=>{
     vote_average: parseFloat(movie.rating),
     release_date: new Date(movie.releasedDate).toISOString(),
     runtime: parseFloat(movie.runTime),
-    poster_path: 'https://image.tmdb.org/t/p/w500/ylXCdC106IKiarftHkcacasaAcb.jpg',
+    poster_path: movie.thumbnail || 'https://image.tmdb.org/t/p/w500/pU1ULUq8D3iRxl1fdX2lZIzdHuI.jpg',
   }
 }
