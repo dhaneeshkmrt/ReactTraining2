@@ -7,6 +7,9 @@
     color: #fff;
     font-size: 2.5rem;
     cursor: pointer;
+    position: absolute;
+    right: 30px;
+    top: 0;
   }
   h1 {
     font-weight: 100;
@@ -16,6 +19,7 @@
     margin-top: 0;
   }
   .form-field {
+    position: relative;
     label {
       color: #f65261;
       padding: 10px 0;
@@ -30,6 +34,12 @@
       background-color: #424242;
       color: #fff;
       border: none;
+    }
+    div {
+      color: white;
+      position: absolute;
+      bottom: -18px;
+      right: -20px;
     }
   }
   .form-footer {
