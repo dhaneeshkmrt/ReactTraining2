@@ -29,19 +29,6 @@ function MovieList(props) {
   });
 
   const genres = useSelector(state => state.movies.genres);
-  // const filterBySearchKeyword = useSelector(state => state.movie.searchKeyword);
-
-  // updateMovieList(fullMovieList);
-
-  // if (filterCategoryName) {
-  //   const filteredMovies = fullMovieList.filter(movie => movie.genre.toLowerCase().includes(filterCategoryName.toLowerCase()));
-  //   updateMovieList(filteredMovies);
-  // }
-
-  // if (filterBySearchKeyword) {
-  //   const searchedMovies = fullMovieList.filter(movie => movie.title.toLowerCase().includes(filterBySearchKeyword.toLowerCase()));
-  //   updateMovieList(searchedMovies);
-  // }
 
   const onHandleSearchClick = (searchKeyword) => {
     props.dispatch({ type: FILTER_CATEGORY_BY_SEARCH_KEYWORD, payload: searchKeyword })

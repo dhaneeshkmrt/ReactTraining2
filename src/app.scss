@@ -16,6 +16,7 @@
     margin-top: 0;
   }
   .form-field {
+    position: relative;
     label {
       color: #f65261;
       padding: 10px 0;
@@ -30,6 +31,11 @@
       background-color: #424242;
       color: #fff;
       border: none;
+    }
+    .error-message {
+      position: absolute;
+      right: -17px;
+      color: #fff;
     }
   }
   .form-footer {
