@@ -41,13 +41,13 @@ export default function MoviePopup(props) {
 
       if (!values.runTime) {
         errors.runTime = 'required';
-      } else if (!isFloat(parseFloat(values.runTime))) {
+      } else if (!isFloat(values.runTime)) {
         errors.runTime = 'Runtime should be a number';
       }
 
       if (!values.rating) {
         errors.rating = 'required';
-      } else if (!isFloat(parseFloat(values.rating))) {
+      } else if (!isFloat(values.rating)) {
         errors.rating = 'Rating should be a number';
       }
       return errors;
@@ -58,8 +58,13 @@ export default function MoviePopup(props) {
 
   });
 
-  function isFloat(n) {
-    return Number(n) === n || n % 1 !== 0;
+  function isFloat(numberValue) {
+    numberValue = parseFloat(numberValue)
+    if(isNaN(numberValue)){
+      return false;
+    }
+
+    return Number(numberValue) === numberValue || numberValue % 1 !== 0;
   }
 
   return (
