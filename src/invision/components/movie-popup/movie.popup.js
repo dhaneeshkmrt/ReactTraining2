@@ -7,7 +7,9 @@ export default function MoviePopup(props) {
 
   const isAdd = props.title === 'Add Movie';
 
-  const [movie, setState] = useState({ ...props.movie });
+  const [isSubmitClicked, updateSubmitClick] = useState(false);
+
+
 
   const formik = useFormik({
     initialValues: { ...props.movie },
@@ -60,7 +62,7 @@ export default function MoviePopup(props) {
 
   function isFloat(numberValue) {
     numberValue = parseFloat(numberValue)
-    if(isNaN(numberValue)){
+    if (isNaN(numberValue)) {
       return false;
     }
 
@@ -79,37 +81,38 @@ export default function MoviePopup(props) {
             <div className="form-field">
               <label htmlFor="title">Release Date</label><br />
               <input type="date" name="releasedDate" placeholder="Release Date" value={formik.values.releasedDate} onChange={formik.handleChange} />
-              <div className="error-message">{formik.errors.releasedDate}</div>
+              <div className="error-message">{isSubmitClicked && formik.errors.releasedDate}</div>
             </div>
             <div className="form-field">
               <label htmlFor="title">Movie URL</label><br />
               <input type="text" placeholder="Movie URL" name="thumbnail" value={formik.values.thumbnail} onChange={formik.handleChange} />
-              <div className="error-message">{formik.errors.thumbnail}</div>
+              <div className="error-message">{isSubmitClicked && formik.errors.thumbnail}</div>
             </div>
             <div className="form-field">
               <label htmlFor="title">GENRE</label><br />
               <input type="text" placeholder="GENRE" name="genre" value={formik.values.genre} onChange={formik.handleChange} />
-              <div className="error-message">{formik.errors.genre}</div>
+              <div className="error-message">{isSubmitClicked && formik.errors.genre}</div>
             </div>
             <div className="form-field">
               <label htmlFor="title">OVERVIEW</label><br />
               <input type="text" placeholder="OVERVIEW" name="overview" value={formik.values.overview} onChange={formik.handleChange} />
-              <div className="error-message">{formik.errors.overview}</div>
+              <div className="error-message">{isSubmitClicked && formik.errors.overview}</div>
             </div>
             <div className="form-field">
               <label htmlFor="title">Rating</label><br />
               <input type="text" placeholder="OVERVIEW" name="rating" value={formik.values.rating} onChange={formik.handleChange} />
-              <div className="error-message">{formik.errors.rating}</div>
+              <div className="error-message">{isSubmitClicked && formik.errors.rating}</div>
             </div>
             <div className="form-field">
               <label htmlFor="title">RUNTIME</label><br />
               <input type="text" placeholder="RUNTIME" name="runTime" value={formik.values.runTime} onChange={formik.handleChange} />
-              <div className="error-message">{formik.errors.runTime}</div>
+              <div className="error-message">{isSubmitClicked && formik.errors.runTime}</div>
             </div>
 
             <div className="form-footer">
               <button className="primary-btn reset-button" type='reset'>Reset</button>
-              <button className="primary-btn" type="submit" >Submit</button>
+
+              <button className="primary-btn" type="submit" onClick={() => updateSubmitClick(true)} >Submit</button>
             </div>
           </div>
         </form>
