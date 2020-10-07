@@ -3,6 +3,11 @@
   .desc{
     cursor: pointer;
   }
+  .thumbnail{
+    img{
+      width: 100%;
+    }
+  }
   .item-action {
     .action-icon {
       position: absolute;
