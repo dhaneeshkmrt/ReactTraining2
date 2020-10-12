@@ -1,72 +1,38 @@
-.movie-list-section {
-  background-color: #232322;
-  .movie-list-ctnr {
-    width: 90%;
-    margin: 0 auto;
-    .header {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #6c6c6c;
-      .categories {
+.movie-list {
+  .list-count {
+    font-size: 1.5rem;
+    color: #fff;
+    padding: 15px;
+  }
+  .items {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .item {
+      padding: 10px;
+      margin: 10px;
+      width: 30%;
+      .thumbnail {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+      }
+      .desc {
+        color: #9e9e9e;
         display: flex;
         justify-content: space-between;
-        .category {
-          cursor: pointer;
-          padding: 20px;
-          color: #fff;
-          border-bottom: 1px solid #2f2f2f;
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+        margin-top: 10px;
+        .type {
+          font-size: 0.9rem;
         }
-      }
-      .sort {
-        font-size: 1.5rem;
-        padding: 15px 0;
-        color: #525252;
-        select {
-          font-size: 1.3rem;
-          color: #fff;
-          background-color: #232323;
-          border: none;
-          margin-left: 25px;
-        }
-      }
-    }
-    .movie-list {
-      .list-count {
-        font-size: 1.5rem;
-        color: #fff;
-        padding: 15px;
-      }
-      .items {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        .item {
-          padding: 10px;
-          margin: 10px;
-          width: 30%;
-          .thumbnail {
-            width: 100%;
-            height: auto;
-            min-height: 200px;
-          }
-          .desc {
-            color: #9e9e9e;
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.1rem;
-            line-height: 1.5rem;
-            margin-top: 10px;
-            .type {
-              font-size: 0.9rem;
-            }
-            .year {
-              span {
-                padding: 0 5px;
-                border: 1px solid;
-                margin-top: 5px;
-                display: inline-block;
-              }
-            }
+        .year {
+          span {
+            padding: 0 5px;
+            border: 1px solid;
+            margin-top: 5px;
+            display: inline-block;
           }
         }
       }
