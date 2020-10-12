@@ -11,7 +11,7 @@ const initValue = {
   genres: ["All"],
   filterCategoryName: '',
   searchKeyword: '',
-  sortValue: 'RELEASE DATE'
+  sortValue: 'releasedDate'
 }
 
 export function movieReducer(state = initValue, action) {
@@ -28,7 +28,7 @@ export function movieReducer(state = initValue, action) {
       return { ...state, fullMovieList, movieList: sort([...fullMovieList], 'releasedDate'), genres: [...state.genres, ...genres] };
 
     case ADD_MOVIE:
-      return { ...state, fullMovieList: [...state.fullMovieList, action.payload], movieList: [...state.movieList, action.payload] }
+      return { ...state, fullMovieList: [...state.fullMovieList, action.payload], movieList: sort([...state.movieList, action.payload], state.sortValue) }
 
     case EDIT_MOVIE: {
       const fullMovieList = [...state.fullMovieList];
@@ -46,16 +46,16 @@ export function movieReducer(state = initValue, action) {
       return { ...state, fullMovieList, movieList };
     }
     case SORT_MOVIE: {
-      const newSortValue= action.payload;
+      const newSortValue = action.payload;
       const movieList = [...state.movieList];
       const sortedMovieList = sort(movieList, newSortValue);
-      return { ...state,sortValue: newSortValue, movieList: sortedMovieList }
+      return { ...state, sortValue: newSortValue, movieList: sortedMovieList }
     }
 
     case FILTER_CATEGORY_BY_NAME: {
       const filterCategoryName = action.payload === 'ALL' ? '' : action.payload;
       const movieList = state.fullMovieList.filter(movie => movie.genre.toLowerCase().includes(filterCategoryName.toLowerCase()));
-      return { ...state, filterCategoryName, movieList };
+      return { ...state, filterCategoryName, movieList: sort(movieList, state.sortValue) };
     }
 
     case FILTER_CATEGORY_BY_SEARCH_KEYWORD: {

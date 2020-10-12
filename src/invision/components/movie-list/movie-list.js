@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { connect, useSelector } from 'react-redux'
+import { connect, useSelector, useDispatch } from 'react-redux'
 
 import MoviePopup from '../movie-popup/movie.popup';
 import DeletePopup from '../delete-movie/delete-popup';
@@ -9,9 +9,6 @@ import SearchBar from '../search-bar/search-bar';
 import MovieDetail from '../movie-detail/movie-detail';
 import './movie-list.scss';
 
-import MovieService from '../../services/movie.service';
-import useFetchMovie from './fetch-movie.hook';
-
 import { getFullMovieList } from "../../store/actions/get-full-movie-list.action";
 import { addMovieAction } from "../../store/actions/add-movie.action";
 import { editMovieAction } from "../../store/actions/edit-movie.action";
@@ -20,8 +17,10 @@ import { FILTER_CATEGORY_BY_NAME, FILTER_CATEGORY_BY_SEARCH_KEYWORD, SORT_MOVIE 
 
 function MovieList(props) {
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    props.dispatch(getFullMovieList());
+    dispatch(getFullMovieList());
   }, []);
 
   const movieList = useSelector(state => {
@@ -29,28 +28,13 @@ function MovieList(props) {
   });
 
   const genres = useSelector(state => state.movies.genres);
-  // const filterBySearchKeyword = useSelector(state => state.movie.searchKeyword);
-
-  // updateMovieList(fullMovieList);
-
-  // if (filterCategoryName) {
-  //   const filteredMovies = fullMovieList.filter(movie => movie.genre.toLowerCase().includes(filterCategoryName.toLowerCase()));
-  //   updateMovieList(filteredMovies);
-  // }
-
-  // if (filterBySearchKeyword) {
-  //   const searchedMovies = fullMovieList.filter(movie => movie.title.toLowerCase().includes(filterBySearchKeyword.toLowerCase()));
-  //   updateMovieList(searchedMovies);
-  // }
 
   const onHandleSearchClick = (searchKeyword) => {
-    props.dispatch({ type: FILTER_CATEGORY_BY_SEARCH_KEYWORD, payload: searchKeyword })
-    // const searchedMovies = fullMovieList.filter(movie => movie.title.toLowerCase().includes(searchKeyword.toLowerCase()));
-    // updateMovieList(searchedMovies);
+    dispatch({ type: FILTER_CATEGORY_BY_SEARCH_KEYWORD, payload: searchKeyword })
   }
 
   const filterCategory = (categoryName = '') => {
-    props.dispatch({ type: FILTER_CATEGORY_BY_NAME, payload: categoryName })
+    dispatch({ type: FILTER_CATEGORY_BY_NAME, payload: categoryName })
   }
 
   const [sortValue, updateSortValue] = useState('RELEASE DATE');
@@ -61,7 +45,7 @@ function MovieList(props) {
 
 
   const sort = (newSortValue) => {
-    props.dispatch({type: SORT_MOVIE, payload: newSortValue});
+    dispatch({type: SORT_MOVIE, payload: newSortValue});
     updateSortValue(newSortValue);
   }
 
@@ -76,19 +60,19 @@ function MovieList(props) {
     updateMoviePopupVisibility(visible);
 
     if (isAdd) {
-      props.dispatch(addMovieAction(updatedMovie));
+      dispatch(addMovieAction(updatedMovie));
       return;
     }
 
     if (updatedMovie) {
-      props.dispatch(editMovieAction(updatedMovie));
+      dispatch(editMovieAction(updatedMovie));
     }
 
   }
 
   const onDeletePopupClose = ({ isDelete, deletedMovie }) => {
     if (isDelete) {
-      props.dispatch(deleteMovieAction(deletedMovie.id));
+      dispatch(deleteMovieAction(deletedMovie.id));
     }
     updateDeleteMoviePopupVisibility(false);
   }
@@ -157,11 +141,4 @@ function MovieList(props) {
 
 }
 
-function mapToProps(store) {
-  const { fullMovieList } = store.movies;
-  return {
-    fullMovieList
-  }
-}
-
-export default connect(mapToProps)(MovieList);
+export default MovieList;
