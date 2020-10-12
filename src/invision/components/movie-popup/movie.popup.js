@@ -51,6 +51,13 @@ export default function MoviePopup(props) {
         errors.rating = 'required';
       } else if (!isFloat(values.rating)) {
         errors.rating = 'Rating should be a number';
+      } else {
+        const numberValue = parseFloat(values.rating);
+        if (numberValue >= 0 && numberValue <= 100) {
+          errors.rating = 'Rating value should be in range 0 -100';
+        } else {
+          errors.rating = 'Rating should be a number';
+        }
       }
       return errors;
     },
@@ -70,7 +77,7 @@ export default function MoviePopup(props) {
   }
 
   return (
-    <Modal visible={props.visible} width="600" effect="fadeInDown" onClickAway={() => props.onModalClose({ visible: false })}>
+    <Modal visible="true" width="600" effect="fadeInDown" onClickAway={() => props.onModalClose({ visible: false })}>
       <div className="add-movie-ctnr">
         <div className="header-close-btn"><a onClick={() => props.onModalClose(false)}>&times;</a></div>
         <h1>{props.title}</h1>

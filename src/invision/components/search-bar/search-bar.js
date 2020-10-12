@@ -37,7 +37,7 @@ export default function SearchBar(props) {
           </div>
         </div>
       </section>
-      { addMoviePopupVisibility ? <MoviePopup visible={addMoviePopupVisibility} onModalClose={onModalClose} title="Add Movie" /> : null}
+      { addMoviePopupVisibility ? <MoviePopup onModalClose={onModalClose} title="Add Movie" /> : null}
     </header>
   );
 }
