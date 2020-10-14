@@ -1,6 +1,6 @@
 import {
   GET_FULL_MOVIE_LIST, ADD_MOVIE, FILTER_CATEGORY_BY_NAME, FILTER_CATEGORY_BY_SEARCH_KEYWORD, EDIT_MOVIE, DELETE_MOVIE,
-  SORT_MOVIE, GET_MOVIE, ADD_MOVIE_DETAIL
+  SORT_MOVIE, GET_MOVIE
 } from "../actions/action.types";
 
 import { sort } from "../../utils/movie-sort.util";

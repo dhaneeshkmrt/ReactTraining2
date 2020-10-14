@@ -8,8 +8,6 @@ import NotFound from '../404/not-found';
 import MovieList from '../movie-list/movie-list';
 import './movie-list-container.scss';
 
-import { addMovieAction } from "../../store/actions/add-movie.action";
-import { editMovieAction } from "../../store/actions/edit-movie.action";
 import { FILTER_CATEGORY_BY_NAME, SORT_MOVIE } from '../../store/actions/action.types';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
 import { createBrowserHistory } from "history";

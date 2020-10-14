@@ -3,13 +3,9 @@ import Modal from 'react-awesome-modal';
 import { useFormik } from 'formik';
 
 export default function MoviePopup(props) {
-
-
+  
   const isAdd = props.title === 'Add Movie';
-
   const [isSubmitClicked, updateSubmitClick] = useState(false);
-
-
 
   const formik = useFormik({
     initialValues: { ...props.movie },

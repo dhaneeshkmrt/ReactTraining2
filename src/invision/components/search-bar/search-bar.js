@@ -4,7 +4,6 @@ import { useHistory } from 'react-router';
 import { useParams, Link } from "react-router-dom";
 
 import MoviePopup from "../movie-popup/movie.popup";
-import { FILTER_CATEGORY_BY_SEARCH_KEYWORD } from '../../store/actions/action.types';
 import { searchMovieAction } from '../../store/actions/search-movie.action';
 import { addMovieAction } from '../../store/actions/add-movie.action';
 import './search-bar.scss';
@@ -41,7 +40,6 @@ export default function SearchBar(props) {
       history.push('/search/' + searchString);
     }
   }
-
 
   return (
     <header className="header">
