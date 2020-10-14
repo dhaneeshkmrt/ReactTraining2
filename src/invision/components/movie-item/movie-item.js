@@ -1,7 +1,7 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './movie-item.scss';
-import { Router, useHistory, useLocation } from 'react-router';
+import { useHistory } from 'react-router';
 
 
 export default function MovieItem(props) {
@@ -25,7 +25,7 @@ export default function MovieItem(props) {
   }
 
   const showMovieDetail = (id) => {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     history.push('/movie/' + id);
   }
 
@@ -40,7 +40,7 @@ export default function MovieItem(props) {
         </div>
       </div>
       <div className="thumbnail">
-        <img src={props.movie.thumbnail} alt="film-thumbnail" />
+        <img src={props.movie.thumbnail} alt={props.movie.title + 'thumbnail'} />
       </div>
       <div className="desc">
         <div className="name">

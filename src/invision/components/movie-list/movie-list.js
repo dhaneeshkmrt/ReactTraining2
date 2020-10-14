@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import './movie-list.scss';
 import MovieItem from '../movie-item/movie-item';
@@ -9,7 +8,6 @@ import DeletePopup from '../delete-movie/delete-popup';
 
 import { editMovieAction } from "../../store/actions/edit-movie.action";
 import { deleteMovieAction } from "../../store/actions/delete-movie.action";
-import { FILTER_CATEGORY_BY_NAME } from '../../store/actions/action.types';
 
 
 const MovieList = (props) => {
@@ -18,19 +16,10 @@ const MovieList = (props) => {
   const [isDeleteMovieVisible, updateDeleteMoviePopupVisibility] = useState(false);
   const [selectedMovie, updateSelectedMovie] = useState(null);
   const dispatch = useDispatch();
-  const { categoryName } = useParams();
 
   const movieList = useSelector(state => {
     return state.movies.movieList
   });
-
-  // useEffect(() => {
-  //   if (categoryName) {
-  //     setTimeout(()=>{
-  //       dispatch({ type: FILTER_CATEGORY_BY_NAME, payload: categoryName })
-  //     })
-  //   }
-  // }, []);
 
   const showDeletePopup = (id) => {
     const selectedMovie = findMovie(id);
@@ -71,11 +60,6 @@ const MovieList = (props) => {
   const findMovie = (id) => {
     return movieList.find(movie => movie.id === id);
   };
-
-  // const history = createBrowserHistory();
-  // if (movieList && movieList.length ===0) {
-  //   history.push('/no-movies-found');
-  // }
 
   return <>
     {isEditMovieVisible ? <MoviePopup visible="true" title="Edit Movie" movie={selectedMovie} onModalClose={onMoviePopupClose} /> : null}

@@ -1,16 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+
 import { GET_MOVIE } from '../../store/actions/action.types';
 import './movie-detail.scss';
-import {useHistory} from 'react-router-dom';
 
 export default function MovieDetail(props) {
   // const movie = props.movie;
   let { id } = useParams();
   const history = useHistory()
-
   const movie = useSelector(state => state.movies.movieDetail);
   const dispatch = useDispatch();
   if (id > 0) {
@@ -20,7 +20,7 @@ export default function MovieDetail(props) {
   return (
     <div className="movie-detail-ctnr">
       <div className="item-action">
-        <div className="action-name"> netflixroulette</div>
+        <div className="action-name"><Link to="/">netflix roulette</Link></div>
         <Link to='/'>
           <div className="action-icon">
             <span><svg width="50px" height="50px" className="svg-icon">

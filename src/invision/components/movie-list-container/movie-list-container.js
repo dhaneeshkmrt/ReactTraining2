@@ -1,8 +1,5 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { connect, useSelector, useDispatch } from 'react-redux'
-
-import MoviePopup from '../movie-popup/movie.popup';
-import DeletePopup from '../delete-movie/delete-popup';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 
 import SearchBar from '../search-bar/search-bar';
 import MovieDetail from '../movie-detail/movie-detail';
@@ -11,12 +8,10 @@ import NotFound from '../404/not-found';
 import MovieList from '../movie-list/movie-list';
 import './movie-list-container.scss';
 
-import { getFullMovieList } from "../../store/actions/get-full-movie-list.action";
 import { addMovieAction } from "../../store/actions/add-movie.action";
 import { editMovieAction } from "../../store/actions/edit-movie.action";
-import { deleteMovieAction } from "../../store/actions/delete-movie.action";
-import { FILTER_CATEGORY_BY_NAME, FILTER_CATEGORY_BY_SEARCH_KEYWORD, SORT_MOVIE } from '../../store/actions/action.types';
-import { BrowserRouter as Router, Route, Switch, useHistory, useLocation, useParams, useRouteMatch, Redirect } from "react-router-dom"
+import { FILTER_CATEGORY_BY_NAME, SORT_MOVIE } from '../../store/actions/action.types';
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
 import { createBrowserHistory } from "history";
 
 function MovieListContainer(props) {
@@ -25,13 +20,6 @@ function MovieListContainer(props) {
   const history = createBrowserHistory();
   const genres = useSelector(state => state.movies.genres);
   const [sortValue, updateSortValue] = useState('RELEASE DATE');
-
-  
-
-  useEffect(() => {
-    dispatch(getFullMovieList());
-  }, []);
-
 
   const filterCategory = (categoryName = '') => {
     history.push('/category/' + categoryName);
@@ -44,18 +32,6 @@ function MovieListContainer(props) {
     updateSortValue(newSortValue);
   }
 
-  const onMoviePopupClose = ({ visible, isAdd, updatedMovie }) => {
-    updateMoviePopupVisibility(visible);
-
-    if (isAdd) {
-      dispatch(addMovieAction(updatedMovie));
-      return;
-    }
-
-    if (updatedMovie) {
-      dispatch(editMovieAction(updatedMovie));
-    }
-  }
   return (
     <>
       <Router history={history}>
@@ -65,20 +41,14 @@ function MovieListContainer(props) {
           <Route path="/movie/:id">
             <MovieDetail />
           </Route>
-          <Route path="/no-movies-found">
-            <SearchBar onModalClose={onMoviePopupClose} />
-          </Route>
           <Route path="/category/:categoryName">
-            <SearchBar onModalClose={onMoviePopupClose} />
+            <SearchBar />
           </Route>
           <Route path="/search/:keyword">
-            <SearchBar onModalClose={onMoviePopupClose} />
-          </Route>
-          <Route exact path="/movie/no-movies-found">
-            <NoMoviesFound />
+            <SearchBar />
           </Route>
           <Route exact path="/">
-            <SearchBar onModalClose={onMoviePopupClose} />
+            <SearchBar />
           </Route>
           <Route path="*">
             <NotFound />
@@ -105,7 +75,7 @@ function MovieListContainer(props) {
               </div>
             </div>
             <Switch>
-              <Route exact path="/no-movies-found">
+              <Route exact path="/">
                 <NoMoviesFound />
               </Route>
               <Route path="/category/:categoryName">

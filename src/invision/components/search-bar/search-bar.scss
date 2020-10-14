@@ -12,6 +12,10 @@
       font-size: 1.8rem;
       color: $primary-color;
       padding: 6px 0;
+      a{
+        color: $primary-color;
+        text-decoration: none;
+      }
     }
     .add-movie {
       button {

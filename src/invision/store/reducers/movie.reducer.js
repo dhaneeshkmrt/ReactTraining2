@@ -1,6 +1,6 @@
 import {
   GET_FULL_MOVIE_LIST, ADD_MOVIE, FILTER_CATEGORY_BY_NAME, FILTER_CATEGORY_BY_SEARCH_KEYWORD, EDIT_MOVIE, DELETE_MOVIE,
-  SORT_MOVIE, GET_MOVIE
+  SORT_MOVIE, GET_MOVIE, ADD_MOVIE_DETAIL
 } from "../actions/action.types";
 
 import { sort } from "../../utils/movie-sort.util";
@@ -15,6 +15,7 @@ const initValue = {
   sortValue: 'releasedDate'
 }
 
+
 export function movieReducer(state = initValue, action) {
   switch (action.type) {
     case GET_FULL_MOVIE_LIST:
@@ -26,7 +27,7 @@ export function movieReducer(state = initValue, action) {
           genres.push(movie.genre);
         }
       });
-      return { ...state, fullMovieList,  movieList: sort([...fullMovieList], 'releasedDate'), genres: [...state.genres, ...genres] };
+      return { ...state, fullMovieList, movieList: sort([...fullMovieList], 'releasedDate'), genres: ['All', ...genres] };
 
     case ADD_MOVIE:
       return { ...state, fullMovieList: [...state.fullMovieList, action.payload], movieList: sort([...state.movieList, action.payload], state.sortValue) }
