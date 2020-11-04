@@ -6,7 +6,7 @@ module.exports = {
   output: {
     filename: 'index_bundle.js',
     path: __dirname + '/dist',
-    publicPath:'/',
+    publicPath: '/',
   },
   devtool: 'eval-source-map',
   performance: {
@@ -17,7 +17,13 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.(js)?$/, use: 'babel-loader', },
+      {
+        test: /\.(js)?$/,
+        use: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react']
+        }
+      },
       { test: /\.s[ac]ss$/i, use: ['style-loader', 'css-loader', 'sass-loader'] },
       {
         test: /\.(png|svg|jpg|gif)$/,
