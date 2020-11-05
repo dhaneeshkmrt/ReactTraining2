@@ -3,13 +3,9 @@ import Modal from 'react-awesome-modal';
 import { useFormik } from 'formik';
 
 export default function MoviePopup(props) {
-
-
+  
   const isAdd = props.title === 'Add Movie';
-
   const [isSubmitClicked, updateSubmitClick] = useState(false);
-
-
 
   const formik = useFormik({
     initialValues: { ...props.movie },
@@ -47,17 +43,13 @@ export default function MoviePopup(props) {
         errors.runTime = 'Runtime should be a number';
       }
 
+      const numberValue = parseFloat(values.rating);
       if (!values.rating) {
         errors.rating = 'required';
       } else if (!isFloat(values.rating)) {
         errors.rating = 'Rating should be a number';
-      } else {
-        const numberValue = parseFloat(values.rating);
-        if (numberValue >= 0 && numberValue <= 100) {
-          errors.rating = 'Rating value should be in range 0 -100';
-        } else {
-          errors.rating = 'Rating should be a number';
-        }
+      } else if (numberValue <= 0 && numberValue >= 100) {
+        errors.rating = 'Rating value should be in range 0 -100';
       }
       return errors;
     },

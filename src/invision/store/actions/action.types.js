@@ -1,4 +1,5 @@
 export const GET_MOVIE_LIST = '[MOVIE] GET_MOVIE_LIST';
+export const GET_MOVIE = '[MOVIE] GET_MOVIE';
 export const ADD_MOVIE = '[MOVIE] ADD_MOVIE';
 export const EDIT_MOVIE = '[MOVIE] EDIT_MOVIE';
 export const DELETE_MOVIE = '[MOVIE] DELETE_MOVIE';

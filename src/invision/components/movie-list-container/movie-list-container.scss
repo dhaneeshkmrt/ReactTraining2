@@ -1,0 +1,35 @@
+.movie-list-section {
+  background-color: #232322;
+  .movie-list-ctnr {
+    width: 90%;
+    margin: 0 auto;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #6c6c6c;
+      .categories {
+        display: flex;
+        justify-content: space-between;
+        .category {
+          cursor: pointer;
+          padding: 20px;
+          color: #fff;
+          border-bottom: 1px solid #2f2f2f;
+        }
+      }
+      .sort {
+        font-size: 1.5rem;
+        padding: 15px 0;
+        color: #525252;
+        select {
+          font-size: 1.3rem;
+          color: #fff;
+          background-color: #232323;
+          border: none;
+          margin-left: 25px;
+        }
+      }
+    }
+   
+  }
+}
