@@ -7,16 +7,10 @@ import { Link } from 'react-router-dom';
 import { GET_MOVIE } from '../../store/actions/action.types';
 import './movie-detail.scss';
 
-export default function MovieDetail(props) {
-  // const movie = props.movie;
+export default function MovieDetail() {
   let { id } = useParams();
   const history = useHistory()
-  const movie = useSelector(state => state.movies.movieDetail);
-  const dispatch = useDispatch();
-  if (id > 0) {
-    dispatch({ type: GET_MOVIE, payload: id });
-  }
-
+  const movie = useSelector(state => state.movies.fullMovieList.find(movie => movie.id == id));
   return (
     <div className="movie-detail-ctnr">
       <div className="item-action">

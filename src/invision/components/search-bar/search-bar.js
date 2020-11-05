@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useParams, Link } from "react-router-dom";
 
@@ -11,13 +11,14 @@ import './search-bar.scss';
 export default function SearchBar(props) {
   const [addMoviePopupVisibility, updateAddMoviePopupVisibility] = useState(false);
   const [searchKeyword, updateSearchKeyword] = useState('');
+  const sortValue = useSelector(state => state.movies.sortValue)
   const history = useHistory();
   const dispatch = useDispatch();
   const { keyword } = useParams();
 
   useEffect(() => {
     if (keyword) {
-      dispatch(searchMovieAction(keyword))
+      dispatch(searchMovieAction(keyword, sortValue))
       updateSearchKeyword(keyword);
     }
   }, []);
@@ -36,7 +37,7 @@ export default function SearchBar(props) {
 
   const handleSearchClick = (searchString) => {
     if (searchString) {
-      dispatch(searchMovieAction(searchString));
+      dispatch(searchMovieAction(searchString, sortValue));
       history.push('/search/' + searchString);
     }
   }
