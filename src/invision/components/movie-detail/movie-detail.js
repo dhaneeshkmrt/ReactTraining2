@@ -14,8 +14,6 @@ export default function MovieDetail() {
   const dispatch = useDispatch();
   if (id > 0) {
     dispatch({ type: GET_MOVIE, payload: id });
-  }else{
-    history.push('/');
   }
 
   return (

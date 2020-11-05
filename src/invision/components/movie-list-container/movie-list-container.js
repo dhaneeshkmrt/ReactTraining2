@@ -40,7 +40,7 @@ function MovieListContainer(props) {
           <Route path={["/category/:categoryName", "/search/:keyword", "/"]}>
             <SearchBar />
           </Route>
-          <Route path="*">
+          <Route path={["/movie", "*"]}>
             <NotFound />
           </Route>
         </Switch>
@@ -65,14 +65,14 @@ function MovieListContainer(props) {
               </div>
             </div>
             <Switch>
+              <Route path={["/category/:categoryName", "/movie/:id", "/search/:keyword"]}>
+                <MovieList />
+              </Route>
               <Route exact path="/">
                 <NoMoviesFound />
               </Route>
-              <Route path="/category/:categoryName">
-                <MovieList />
-              </Route>
               <Route exact path="*">
-                <MovieList />
+                <NotFound />
               </Route>
             </Switch>
           </div>
