@@ -1,0 +1,226 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie Popup:  should render 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": "100%",
+        "justifyContent": "center",
+        "left": 0,
+        "position": "fixed",
+        "top": 0,
+        "width": "100%",
+        "zIndex": 10000,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "backgroundColor": "#fff",
+          "borderRadius": "5px",
+          "boxShadow": "0 2px 4px rgba(0, 0, 0, 0.3)",
+          "boxSizing": "border-box",
+          "transform": "translate3d(0, 0, 0)",
+          "transition": "transform 500ms cubic-bezier(0, 0, 0.25, 1), opacity 500ms cubic-bezier(0, 0, 0.25, 1)",
+          "width": "600px",
+          "zIndex": 10002,
+        }
+      }
+    >
+      <div
+        className="add-movie-ctnr"
+      >
+        <div
+          className="header-close-btn"
+        >
+          <a
+            onClick={[Function]}
+          >
+            ×
+          </a>
+        </div>
+        <h1 />
+        <form
+          className="form-ctnr"
+          id="dktest"
+          onReset={[Function]}
+          onSubmit={[Function]}
+        >
+          <div
+            className="form-field"
+          >
+            <label
+              htmlFor="title"
+            >
+              Title
+            </label>
+            <br />
+            <input
+              name="title"
+              onChange={[Function]}
+              placeholder="Title"
+              type="text"
+              value=""
+            />
+            <div
+              className="form-field"
+            >
+              <label
+                htmlFor="title"
+              >
+                Release Date
+              </label>
+              <br />
+              <input
+                name="releasedDate"
+                onChange={[Function]}
+                placeholder="Release Date"
+                type="date"
+                value=""
+              />
+              <div
+                className="error-message"
+              />
+            </div>
+            <div
+              className="form-field"
+            >
+              <label
+                htmlFor="title"
+              >
+                Movie URL
+              </label>
+              <br />
+              <input
+                name="thumbnail"
+                onChange={[Function]}
+                placeholder="Movie URL"
+                type="text"
+                value=""
+              />
+              <div
+                className="error-message"
+              />
+            </div>
+            <div
+              className="form-field"
+            >
+              <label
+                htmlFor="title"
+              >
+                GENRE
+              </label>
+              <br />
+              <input
+                name="genre"
+                onChange={[Function]}
+                placeholder="GENRE"
+                type="text"
+                value=""
+              />
+              <div
+                className="error-message"
+              />
+            </div>
+            <div
+              className="form-field"
+            >
+              <label
+                htmlFor="title"
+              >
+                OVERVIEW
+              </label>
+              <br />
+              <input
+                name="overview"
+                onChange={[Function]}
+                placeholder="OVERVIEW"
+                type="text"
+                value=""
+              />
+              <div
+                className="error-message"
+              />
+            </div>
+            <div
+              className="form-field"
+            >
+              <label
+                htmlFor="title"
+              >
+                Rating
+              </label>
+              <br />
+              <input
+                name="rating"
+                onChange={[Function]}
+                placeholder="OVERVIEW"
+                type="text"
+                value=""
+              />
+              <div
+                className="error-message"
+              />
+            </div>
+            <div
+              className="form-field"
+            >
+              <label
+                htmlFor="title"
+              >
+                RUNTIME
+              </label>
+              <br />
+              <input
+                name="runTime"
+                onChange={[Function]}
+                placeholder="RUNTIME"
+                type="text"
+                value=""
+              />
+              <div
+                className="error-message"
+              />
+            </div>
+            <div
+              className="form-footer"
+            >
+              <button
+                className="primary-btn reset-button"
+                type="reset"
+              >
+                Reset
+              </button>
+              <button
+                className="primary-btn"
+                onClick={[Function]}
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      onClick={[Function]}
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.7)",
+          "height": "100%",
+          "left": 0,
+          "position": "fixed",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 10001,
+        }
+      }
+    />
+  </div>
+</div>
+`;

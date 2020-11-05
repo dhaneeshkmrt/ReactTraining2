@@ -33,10 +33,6 @@ const MovieList = (props) => {
     updateMoviePopupVisibility(true);
   }
 
-  const showMovieDetail = (movie) => {
-    updateDetailedMovie(movie);
-  }
-
   const onDeletePopupClose = ({ isDelete, deletedMovie }) => {
     if (isDelete) {
       dispatch(deleteMovieAction(deletedMovie.id));
@@ -71,7 +67,7 @@ const MovieList = (props) => {
       <div className="items">
         {
           movieList.map((movie, i) => {
-            return <MovieItem key={movie.id} movie={movie} showMovieDetail={showMovieDetail} showEditPopup={showEditPopup} showDeletePopup={showDeletePopup} />
+            return <MovieItem key={movie.id} movie={movie} showEditPopup={showEditPopup} showDeletePopup={showDeletePopup} />
           })
         }
       </div>

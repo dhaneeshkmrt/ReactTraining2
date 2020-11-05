@@ -34,18 +34,10 @@ function MovieListContainer(props) {
     <>
       <Router history={history}>
         <Switch>
-          <Redirect exact from="/movie" to="/"  ></Redirect>
-          <Redirect exact from="/category" to="/"  ></Redirect>
           <Route path="/movie/:id">
             <MovieDetail />
           </Route>
-          <Route path="/category/:categoryName">
-            <SearchBar />
-          </Route>
-          <Route path="/search/:keyword">
-            <SearchBar />
-          </Route>
-          <Route exact path="/">
+          <Route path={["/category/:categoryName", "/search/:keyword", "/"]}>
             <SearchBar />
           </Route>
           <Route path="*">
