@@ -18,12 +18,20 @@ function MovieListContainer(props) {
   const history = createBrowserHistory();
   const genres = useSelector(state => state.movies.genres);
   const [sortValue, updateSortValue] = useState('RELEASE DATE');
+  const [currentCategory, updateCurrentCategory]= useState('');
 
   const filterCategory = (categoryName = '') => {
     history.push('/category/' + categoryName);
     dispatch({ type: FILTER_CATEGORY_BY_NAME, payload: categoryName })
   }
 
+  const hightLight = (event) => {
+    if(currentCategory){
+      currentCategory.classList.remove('active')
+    }
+    updateCurrentCategory(event.target);
+    event.target.classList.add('active');
+  }
 
   const sort = (newSortValue) => {
     dispatch({ type: SORT_MOVIE, payload: newSortValue });
@@ -40,7 +48,7 @@ function MovieListContainer(props) {
           <Route path={["/category/:categoryName", "/search/:keyword", "/"]}>
             <SearchBar />
           </Route>
-          <Route path={["/movie", "*"]}>
+          <Route path={["/movie", "/no-movie-found", "*"]}>
             <NotFound />
           </Route>
         </Switch>
@@ -51,7 +59,7 @@ function MovieListContainer(props) {
               <div className="categories">
                 {
                   genres.map((genre, index) => {
-                    return (<div className="category" key={index} onClick={() => filterCategory(genre.toUpperCase())}>{genre}</div>)
+                    return (<div className="category" key={index} onClick={(e) => { filterCategory(genre.toUpperCase()); hightLight(e) }}>{genre}</div>)
                   })
                 }
               </div>
