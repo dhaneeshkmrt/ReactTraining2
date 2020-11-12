@@ -9,11 +9,11 @@ if (process.env.NODE_ENV === 'development') {
   const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
   const webpackConfig = require('./webpack.index');
 
-  const compiler = webpack(webpackConfig);
+  const compile = webpack(webpackConfig);
 
-  app.use(webpackDevMiddleware(compiler));
-  app.use(webpackHotMiddleware(compiler.compilers.find(c => c.name === 'client')));
-  app.use(require("webpack-hot-middleware")(compiler));
+  app.use(webpackDevMiddleware(compile));
+  app.use(webpackHotMiddleware(compile.compilers.find(c => c.name === 'client')));
+  app.use(webpackHotServerMiddleware(compile));  
 } else {
   const serverRenderer = require('../public/js/serverRenderer').default;
 
