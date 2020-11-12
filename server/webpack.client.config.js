@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const common = require('./webpack.client.config');
+const common = require('./webpack.common.config');
 
 const isDevMod = process.env.NODE_ENV === 'development';
 
