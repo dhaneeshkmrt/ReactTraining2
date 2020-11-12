@@ -8,11 +8,13 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { hot } from 'react-hot-loader';
 
-const Invision = ()=> {
+const Invision = ({ Router, location, context }) => {
   return (
     <ErrorBoundary>
       <Provider store={store}>
-        <MovieListContainer />
+        <Router location={location} context={context}>
+          <MovieListContainer />
+        </Router>
         <Footer />
       </Provider>
     </ErrorBoundary>

@@ -40,7 +40,6 @@ function MovieListContainer(props) {
 
   return (
     <>
-    <StaticRouter history={history}>
         <Switch>
           <Route path="/movie/:id">
             <MovieDetail />
@@ -85,7 +84,6 @@ function MovieListContainer(props) {
             </Switch>
           </div>
         </section >
-      </StaticRouter>
     </>
   );
 
