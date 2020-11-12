@@ -25,10 +25,17 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+      { test: /\.s[ac]ss$/i, use: ['style-loader', 'css-loader', 'sass-loader'] },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
     ],
   },
 
   plugins: [
-    isDevMod ? new webpack.NamedModulesPlugin() : new webpack.HashedModuleIdsPlugin(),
+    new webpack.NamedModulesPlugin()
   ],
 };

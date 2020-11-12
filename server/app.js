@@ -13,7 +13,7 @@ const app = express();
 
   app.use(webpackDevMiddleware(compiler));
   app.use(webpackHotMiddleware(compiler.compilers.find(c => c.name === 'client')));
-  app.use(webpackHotServerMiddleware(compiler));
+  app.use(require("webpack-hot-middleware")(compiler));
 // } else {
 //   const serverRenderer = require('../public/js/serverRenderer').default;
 
