@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const isDevMod = process.env.NODE_ENV === 'development';
 
 module.exports = {
-  mode: 'development',
+  mode: process.env.NODE_ENV,
 
   output: {
     filename: 'js/[name].js',
@@ -16,7 +16,7 @@ module.exports = {
     alias: {
       'react-dom': '@hot-loader/react-dom',
     },
-  }, 
+  },
 
   module: {
     rules: [

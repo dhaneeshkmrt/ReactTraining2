@@ -9,7 +9,7 @@
     "build": "cross-env NODE_ENV=development webpack",
     "build:prod": "cross-env NODE_ENV=production webpack",
     "test": "jest --verbose --coverage", 
-    "ssr": "cross-env NODE_ENV=development node server"
+    "ssr": "cross-env NODE_ENV=development nodemon server"
   },
   "keywords": [],
   "author": "",

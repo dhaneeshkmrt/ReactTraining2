@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import './app.scss';
 import Invision from './invision/invision';
+import { hydrate } from 'react-dom';
 
-function App() {
-  return (
+
+const App = (
     <Invision />
   )
-}
 
-ReactDom.render(<App />, document.getElementById('root'));
+hydrate(App, document.getElementById('root'));
