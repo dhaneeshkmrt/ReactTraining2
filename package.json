@@ -8,7 +8,8 @@
     "serve:prod": "cross-env NODE_ENV=production webpack-dev-server --open",
     "build": "cross-env NODE_ENV=development webpack",
     "build:prod": "cross-env NODE_ENV=production webpack",
-    "test": "jest --verbose --coverage"
+    "test": "jest --verbose --coverage", 
+    "ssr": "cross-env NODE_ENV=development node server"
   },
   "keywords": [],
   "author": "",
