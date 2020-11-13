@@ -9,7 +9,7 @@
     "build": "cross-env NODE_ENV=development webpack",
     "build:prod": "cross-env NODE_ENV=production webpack",
     "test": "jest --verbose --coverage",
-    "ssr": "cross-env NODE_ENV=development node server"
+    "ssr": "cross-env NODE_ENV=development nodemon server"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,7 @@
     "enzyme-adapter-react-15": "^1.4.2",
     "express": "^4.17.1",
     "formik": "^2.1.7",
+    "node-fetch": "^2.6.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-awesome-modal": "^2.0.5",

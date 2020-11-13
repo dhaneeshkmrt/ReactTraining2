@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   const serverRenderer = require('../public/js/serverRenderer').default;
 
-  app.use(express.static('public'));
+  app.use(express.static('/public'));
   app.use(serverRenderer());
 }
 

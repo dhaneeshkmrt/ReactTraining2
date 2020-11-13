@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import Invision from './invision/invision';
 import { store } from './invision/store';
+import { searchMovieAction } from './invision/store/actions/search-movie.action';
 
 function renderHTML(html, preloadedState) {
   return `
@@ -27,10 +28,10 @@ function renderHTML(html, preloadedState) {
   `;
 }
 
-export default function serverRenderer() {
+export default  function serverRenderer() {
   const context = React.createContext();
 
-  return (req, res) => {
+  return async (req, res) => {
     const renderedRoot = () => (<Invision
       context={context}
       location={req.url}
@@ -38,10 +39,22 @@ export default function serverRenderer() {
       store={store}
     />);
     renderToString(renderedRoot());
-    const preloadedState = store.getState();
+    if(req.url.startsWith('/search')){
+      const searchKeyword = req.url.split('/')[2];
+      if(searchKeyword){
+        await store.dispatch(searchMovieAction(searchKeyword));
+      }
+    }else if(req.url.startsWith('/category')){
+      const category = req.url.split('/')[2];
+      if(category){
+        store.dispatch({action: FILTER_CATEGORY_BY_NAME, payload: 'category'});
+      }
+    }
 
     const htmlString = renderToString(renderedRoot());
-
-    res.send(renderHTML(htmlString, preloadedState));
+    setTimeout(() => {
+      const preloadedState = store.getState();
+      res.send(renderHTML(htmlString, preloadedState));
+    }, 3000);
   };
 }
