@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import {hydrate} from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './app.scss';
 import Invision from './invision/invision';
 
-function App() {
-  return (
-    <Invision />
-  )
-}
 
-ReactDom.render(<App />, document.getElementById('root'));
+const App = (
+    <Invision Router={BrowserRouter} />
+  )
+
+hydrate(App, document.getElementById('root'));

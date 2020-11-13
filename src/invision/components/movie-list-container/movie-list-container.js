@@ -9,13 +9,13 @@ import MovieList from '../movie-list/movie-list';
 import './movie-list-container.scss';
 
 import { FILTER_CATEGORY_BY_NAME, SORT_MOVIE } from '../../store/actions/action.types';
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
-import { createBrowserHistory } from "history";
+import { Route, Switch, Redirect, StaticRouter, useHistory } from "react-router-dom"
+import { createBrowserHistory,  } from "history";
 
 function MovieListContainer(props) {
 
   const dispatch = useDispatch();
-  const history = createBrowserHistory();
+  const history = useHistory();
   const genres = useSelector(state => state.movies.genres);
   const [sortValue, updateSortValue] = useState('RELEASE DATE');
   const [currentCategory, updateCurrentCategory]= useState('');
@@ -40,7 +40,6 @@ function MovieListContainer(props) {
 
   return (
     <>
-      <Router history={history}>
         <Switch>
           <Route path="/movie/:id">
             <MovieDetail />
@@ -85,7 +84,6 @@ function MovieListContainer(props) {
             </Switch>
           </div>
         </section >
-      </Router>
     </>
   );
 

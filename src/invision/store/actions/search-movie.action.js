@@ -1,5 +1,6 @@
 import { GET_FULL_MOVIE_LIST } from "./action.types";
 import { movieMapper } from '../../utils/movie-mapper.util';
+const fetch = require('node-fetch');
 
 export const searchMovieAction = (searchKeyword, sortValue) => {
   return dispatch => {

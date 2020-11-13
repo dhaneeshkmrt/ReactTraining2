@@ -15,8 +15,8 @@ export default function SearchBar(props) {
   const history = useHistory();
   const dispatch = useDispatch();
   const { keyword } = useParams();
-
   useEffect(() => {
+    console.log('keyword: ', keyword);
     if (keyword) {
       dispatch(searchMovieAction(keyword, sortValue))
       updateSearchKeyword(keyword);
