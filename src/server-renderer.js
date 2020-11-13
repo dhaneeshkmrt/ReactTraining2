@@ -11,6 +11,7 @@ function renderHTML(html, preloadedState) {
         <head>
           <meta charset=utf-8>
           <title>React Server Side Rendering</title>
+          <link href="/css/main.css" rel="stylesheet" type="text/css">
         </head>
         <body>
           <div id="root">${html}</div>
@@ -27,7 +28,7 @@ function renderHTML(html, preloadedState) {
 }
 
 export default function serverRenderer() {
-  const context = {}
+  const context = React.createContext();
 
   return (req, res) => {
     const renderedRoot = () => (<Invision
@@ -38,6 +39,7 @@ export default function serverRenderer() {
     />);
     renderToString(renderedRoot());
     const preloadedState = store.getState();
+
     const htmlString = renderToString(renderedRoot());
 
     res.send(renderHTML(htmlString, preloadedState));
